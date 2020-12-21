@@ -15,7 +15,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---js--->
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<script src="js/ownwork.js"></script>
+<script type="text/javascript" src="js/ownwork.js"></script>
 <!---js--->
 <!---fonts-->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -80,24 +80,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="banner-section">
 			<div class="container">
 				<h2>Contact</h2>
+				<div  align="center">
+					<img src="./images/logos/logo.jpg" width="270" height="282" >
+				</div>
 			</div>
 		</div>
 		<!---banner--->
 		<div class="content">
 			<div class="contact-section">
 				<div class="container">
-					<div  align="center">
-						<img src="./images/logos/logo.jpg" width="337" height="339" >
-					</div>
 					<div class="contact-grids">
 						<div class="col-md-8 contact-grid">
 							<h5>Fill out the form and we will get back to you within 24 hours</h5>
 							<form>
-								<input type="text" value="Name " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-								<input type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-								<input type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
-								<textarea type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Special Instruction/Comments...';}" required="">Special Instruction/Comments...</textarea>
-								<input type="submit" value="Submit" >
+								<input id="name" type="text" value="Name " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+								<input id="email" type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+								<input id="phone" type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
+								<textarea id="comment" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Special Instruction/Comments...';}" required="">Special Instruction/Comments...</textarea>
+								<input type="submit" onclick="Feedback()" value="Submit" >
+								<p id="show"></p>
 							</form>
 						</div>
 						<div class="col-md-4 contact-grid1">
@@ -129,18 +130,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="container">
 					<div class="footer-grids">
 						<div class="col-md-3 footer-grid">
-							<h4>About Real Homes</h4>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+							<h4 id="aboutMe"></h4>
+							<p id="aboutMeSub"></p>
 						</div>
 						<div class="col-md-3 footer-grid">
 							<h4>Recent Posts</h4>
 							<ul>
-								<li><a href="#">Lorem Post With Image Format</a></li>
-								<li><a href="#">Example Video Blog Post</a></li>
-								<li><a href="#">Example Post With Gallery Post </a></li>
-								<li><a href="#">Example Video Blog Post</a></li>
-								<li><a href="#">Lorem Post With Image Format</a></li>
-								<li><a href="#">Example Video Blog Post</a></li>
+								<li><a id="postOne" href="#"></a></li>
+								<li><a id="postTwo" href="#"></a></li>
+								<li><a href="#" id="postThree"></a></li>
+								<li><a href="#" id="postFour"></a></li>
+								<li><a href="#" id="postFive"></a></li>
+								<li><a href="#" id="postSix"></a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 footer-grid">
@@ -156,12 +157,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="col-md-3 footer-grid">
 							<h4>Get In Touch</h4>
-							<p>8901 Marmora Road</p>
-							<p>Glasgow, DO4 89GR.</p>
-							<p>Freephone : +1 234 567 890</p>
-							<p>Telephone : +1 234 567 890</p>
-							<p>FAX : + 1 234 567 890</p>
-							<p>E-mail : <a href="mailto:example@mail.com"> example@mail.com</a></p>
+							<p id= "TouchOne"></p>
+							<p id= "TouchTwo"></p>
+							<p id= "TouchThree"></p>
+							<p id= "TouchFou"><a href="#"> @mail.com</a></p>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -171,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!--copy-->
 			<div class="copy-section">
 				<div class="container">
-					<p id="copyright">as</p>
+					<p id="copyright_main"></p>
 				</div>
 			</div>
 		<!--copy-->

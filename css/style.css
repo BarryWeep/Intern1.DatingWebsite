@@ -672,7 +672,7 @@ div#owl-demo {
 .banner-section {
     background: url(../images/123.jpg) no-repeat 0px 0px;
     background-size: cover;
-    min-height: 180px;
+    min-height: 400px;
 	text-align: center;
 	    padding: 2em 0 0;
 }
