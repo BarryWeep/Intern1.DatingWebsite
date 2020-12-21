@@ -34,7 +34,7 @@ body{
 }
 .head-top {
     padding: .2em 0;
-	border-bottom: 2px solid #E98153;
+	border-bottom: 2px solid #FF9900;
 }
 .social-icon {
     float: left;
@@ -618,7 +618,7 @@ div#owl-demo {
     margin-top: 3em;
 }
 .footer-section {
-    background: #222;
+    background:#F9D790;
     padding: 5em 0;
 }
 .footer-grid h4 {
@@ -650,7 +650,7 @@ div#owl-demo {
 .copy-section{
 	padding:2em 0;
 	text-align:center;
-	background: #333d47;
+	background: #FF9933;
 }
 .copy-section p {
 	font-size: 0.9em;
@@ -670,11 +670,11 @@ div#owl-demo {
 	margin: 0 0.3em
 }
 .banner-section {
-    background: url(../images/banner.jpg) no-repeat 0px 0px;
+    background: url(../images/123.jpg) no-repeat 0px 0px;
     background-size: cover;
     min-height: 180px;
 	text-align: center;
-	    padding: 5em 0 0;
+	    padding: 2em 0 0;
 }
 .banner-section h2{
     font-size: 3em;
