@@ -47,20 +47,20 @@ function Feedback()
 function Update_new()
 {
 	
-	document.getElementById("newone").innerHTML="New Rule of living";
+	document.getElementById("newone").innerHTML="Title: New Rule of living";
 	//document.getElementById("newonedate").innerHTML.childNodes="January 15, 2016 /John Doe/Uncategorized";
 	document.getElementById("newonedes").innerHTML="we adapted to the new reality, turning living rooms into offices and bedrooms into classrooms. For many, the morning commute came to be measured in metres not miles. And many didn't even have to travel that far. Our workplaces could often fit neatly in the palms of our disinfected hands.";
 	
 	
-	document.getElementById("newtwo").innerHTML="Covid-19 Vaccine";
+	document.getElementById("newtwo").innerHTML="Title: Covid-19 Vaccine";
 	//document.getElementById("newtwodate").innerHTML="January 15, 2016 /John Doe/Uncategorized";
 	document.getElementById("newtwodes").innerHTML="As the global race to produce a Covid-19 vaccine continues, China appears to have made huge strides, with vaccines from two front-runners - Sinovac and Sinopharm - already making their way abroad.";
 	
-	document.getElementById("newthree").innerHTML="New Wine Taste";
+	document.getElementById("newthree").innerHTML="Title: New Wine Taste";
 	//document.getElementById("newthreedate").innerHTML="January 15, 2016 /John Doe/Uncategorized";
 	document.getElementById("newthreedes").innerHTML="Nowhere has this been more pronounced than in China, where 54% of respondents to a Wine Intelligence survey in August said they were now buying more Chinese wine compared to pre-pandemic levels.";
 	
-	document.getElementById("newfour").innerHTML="Chinese drone and chip makers";
+	document.getElementById("newfour").innerHTML="Title: Chinese drone and chip makers";
 	//document.getElementById("newfourdate").innerHTML="January 15, 2016 /John Doe/Uncategorized";
 	document.getElementById("newfourdes").innerHTML="Chinese drone and chip makersWe're adding SMIC to the Entity List mostly because we need to make sure US intellectual property and manufacturing capabilities are not being used by SMIC's clients to continue to support the military-civil fusion efforts within China,a senior official in the US Commerce Department said.";
 }
