@@ -2,6 +2,8 @@
 window.onload = function()
 {
 
+
+	Person_Detail();
 	document.getElementById("aboutMe").innerHTML="About Meet you";
 	document.getElementById("aboutMeSub").innerHTML="Meet you is a platform that is aimed to help people in China and Australia to know each other.";
 	
@@ -28,9 +30,49 @@ window.onload = function()
 
 window.onclick  = function()
 {
-	Update_new();
+	Person_Detail();
 }
+function  Person_Detail()
+{
 
+	document.getElementById("first_name_one").innerHTML="Lucy";
+	document.getElementById("gender_one").innerHTML="female";
+	document.getElementById("country_one").innerHTML="Sydney";
+	document.getElementById("age_one").innerHTML="25";
+	document.getElementById("occupation_one").innerHTML="doctor";
+	
+	document.getElementById("first_name_two").innerHTML="Bob";
+	document.getElementById("gender_two").innerHTML="female";
+	document.getElementById("country_two").innerHTML="Sydney";
+	document.getElementById("age_two").innerHTML="25";
+	document.getElementById("occupation_two").innerHTML="doctor";
+	
+	document.getElementById("first_name_three").innerHTML="Claire";
+	document.getElementById("gender_three").innerHTML="Male";
+	document.getElementById("country_three").innerHTML="Sydney";
+	document.getElementById("age_three").innerHTML="25";
+	document.getElementById("occupation_three").innerHTML="doctor";
+	
+	document.getElementById("first_name_four").innerHTML="Frank";
+	document.getElementById("gender_four").innerHTML="Female";
+	document.getElementById("country_four").innerHTML="Sydney";
+	document.getElementById("age_four").innerHTML="25";
+	document.getElementById("occupation_four").innerHTML="doctor";
+	
+	document.getElementById("first_name_five").innerHTML="Anna";
+	document.getElementById("gender_five").innerHTML="25";
+	document.getElementById("country_five").innerHTML="Sydney";
+	document.getElementById("age_five").innerHTML="25";
+	document.getElementById("occupation_five").innerHTML="doctor";
+	
+	document.getElementById("first_name_six").innerHTML="Steven";
+	document.getElementById("gender_six").innerHTML="Female";
+	document.getElementById("country_six").innerHTML="Sydney";
+	document.getElementById("age_six").innerHTML="25";
+	document.getElementById("occupation_six").innerHTML="doctor";
+
+	 
+}
 
 function Feedback()
 {
