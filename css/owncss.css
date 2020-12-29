@@ -1,5 +1,11 @@
-Image_main {
+.Image_main {
     margin-left: auto; 
     margin-right:auto; 
     display:block;
+}
+
+.size {
+	width: 257px;
+    height: 191px;
+    border: 1px solid #FFF;
 }

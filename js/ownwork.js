@@ -17,7 +17,6 @@ window.onload = function()
 	document.getElementById("postFive").innerHTML="Love story five";
 	document.getElementById("postSix").innerHTML="Love story six";
 	
-	//Update_new();
 	document.getElementById("copyright_main").innerHTML="Copyright &copy; 2020.Meet You. All rights reserved.";
 	document.getElementById("aboutMe").innerHTML="About Meet you";
 

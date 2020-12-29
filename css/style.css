@@ -1949,7 +1949,7 @@ a.button2 {
 	    margin-top: 2em;
 }
 .gallery-grid:hover span.rollover1 {
-    background: url(../images/plues1.png) center no-repeat rgba(45, 169, 225, 0.88);
+    background: url(../images/function/likeMarks.png) center no-repeat rgba(45, 169, 225, 0.88);
     cursor: pointer;
     height: 193px;
     width: 255px;
@@ -1963,7 +1963,7 @@ a.button2 {
     transition: all 0.3s ease-out;
 }
 .gallery-grid1:hover span.rollover1 {
-    background: url(../images/plues1.png) center no-repeat rgba(45, 169, 225, 0.88);
+    background: url(../images/function/likeMarks.png) center no-repeat rgba(45, 169, 225, 0.88);
     cursor: pointer;
     height: 263px;
     width: 350px;
@@ -1977,7 +1977,7 @@ a.button2 {
     transition: all 0.3s ease-out;
 }
 .gallery-grid2:hover span.rollover1 {
-    background: url(../images/plues1.png) center no-repeat rgba(45, 169, 225, 0.88);
+    background: url(../images/function/likeMarks.png) center no-repeat rgba(45, 169, 225, 0.88);
     cursor: pointer;
     height: 270px;
     width: 540px;
