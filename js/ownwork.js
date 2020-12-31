@@ -2,9 +2,11 @@
 window.onload = function()
 {
 
-
+	
 	Person_Detail();
-	document.getElementById("aboutMe").innerHTML="About Meet you";
+	
+	Update_new();
+
 	document.getElementById("aboutMeSub").innerHTML="Meet you is a platform that is aimed to help people in China and Australia to know each other.";
 	
 	document.getElementById("TouchOne").innerHTML="Sydney Meet You";
@@ -22,7 +24,7 @@ window.onload = function()
 	document.getElementById("copyright_main").innerHTML="Copyright &copy; 2020.Meet You. All rights reserved.";
 	document.getElementById("aboutMe").innerHTML="About Meet you";
 
-	Update_new();
+
 	
 	
 	
