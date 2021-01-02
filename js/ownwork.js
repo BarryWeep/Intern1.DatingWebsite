@@ -2,7 +2,7 @@
 window.onload = function()
 {
 
-	
+	/*
 	Person_Detail();
 	
 	Update_new();
@@ -20,10 +20,9 @@ window.onload = function()
 	document.getElementById("postFour").innerHTML="Love story four";
 	document.getElementById("postFive").innerHTML="Love story five";
 	document.getElementById("postSix").innerHTML="Love story six";
-	
+	*/
 	document.getElementById("copyright_main").innerHTML="Copyright &copy; 2020.Meet You. All rights reserved.";
 	document.getElementById("aboutMe").innerHTML="About Meet you";
-
 
 	
 	

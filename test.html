@@ -1,0 +1,37 @@
+
+<?php
+
+	$connection = mysqli_connect('localhost','barry','test1234','meetyous');
+	
+	if(!$connection)
+	{
+		echo 'Connection error'.mysqli_connect_errorp();
+	}
+	
+	$sql = 'SELECT * FROM male';
+	
+	$info = mysqli_query($conn,$sql);
+	
+	$info_display = mysqli_fetch_all($info,MYSQLI_ASSOC);
+	
+	mysqli_free_result($info_display);
+	
+	
+	mysqli_close($connection);
+?>
+
+
+<html>
+<!--
+<head>
+<?php include('php/connection.php');?>
+</head>
+
+-->
+<body>
+<h4>dasdasd</h4>
+<h6><?php echo htmlspecialchars($info_display['First_name']; ?)</h6>
+
+</body>
+
+</html>

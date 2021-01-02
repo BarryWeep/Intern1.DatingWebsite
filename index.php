@@ -1,3 +1,33 @@
+<?php 
+require_once 'supportive_php/connection.php';
+?>
+
+<?php
+
+	$sql_one = 'SELECT * FROM news Where ID = 1';
+	$display_one = mysqli_query ($conn,$sql_one);
+	$news_one = mysqli_fetch_all($display_one, MYSQLI_ASSOC);
+	
+	$sql_two = 'SELECT * FROM news Where ID = 2';
+	$display_two = mysqli_query ($conn,$sql_two);
+	$news_two = mysqli_fetch_all($display_two, MYSQLI_ASSOC);
+	
+	
+	$sql_three = 'SELECT * FROM news Where ID = 3';
+	$display_three = mysqli_query ($conn,$sql_three);
+	$news_three = mysqli_fetch_all($display_three, MYSQLI_ASSOC);
+	
+	
+	$sql_four  = 'SELECT * FROM news Where ID = 4';
+	$display_four = mysqli_query ($conn,$sql_four);
+	$news_four = mysqli_fetch_all($display_four, MYSQLI_ASSOC);
+	
+	$sql_post = 'SELECT * FROM post';
+	$display_post = mysqli_query ($conn,$sql_post);
+	$posts = mysqli_fetch_all($display_post,MYSQLI_ASSOC);
+	
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -330,27 +360,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="feature-grids">
 							<div class="col-md-3 feature-grid">
 								<img src="images/newone.jpg" class="img-responsive" alt="/">
-								<h5 id = "newone"></h5>
-								<p id = "newonedes"></p>
-								<a href="https://www.bbc.com/news/world-us-canada-55353178"><span>Know More</span></a>
+								<?php foreach ($news_one as $new_one) { ?>
+									<h5><?php echo htmlspecialchars($new_one['Title']); ?></h5>
+									<p><?php echo htmlspecialchars($new_one['Brief']); ?></p>
+									<a href= <?php echo htmlspecialchars($new_one['Links']); ?>><span>Know More</span></a>
+								<?php } ?>
 							</div>
 							<div class="col-md-3 feature-grid">
 								<img src="images/newthree.jpg" class="img-responsive" alt="/">
-								<h5 id = "newtwo"></h5>
-								<p id = "newtwodes"></p>
-								<a href="https://www.bbc.com/news/world-us-canada-55353178"><span>Know More</span></a>
+									<?php foreach ($news_two as $new_two) { ?>
+									<h5><?php echo htmlspecialchars($new_two['Title']); ?></h5>
+									<p><?php echo htmlspecialchars($new_two['Brief']); ?></p>
+									<a href= <?php echo htmlspecialchars($new_two['Links']); ?>><span>Know More</span></a>
+								<?php } ?>
 							</div>
 							<div class="col-md-3 feature-grid">
 								<img src="images/newtwo.jpg" class="img-responsive" alt="/">
-								<h5 id="newthree"></h5>
-								<p id = "newthreedes"></p>
-								<a href="https://www.bbc.com/news/world-us-canada-55353178"><span>Know More</span></a>
+								<?php foreach ($news_three as $new_three) { ?>
+								<h5><?php echo htmlspecialchars($new_three['Title']); ?></h5>
+								<p><?php echo htmlspecialchars($new_three['Brief']); ?></p>
+								<a href= <?php echo htmlspecialchars($new_three['Links']); ?>><span>Know More</span></a>
+								<?php } ?>
 							</div>
 							<div class="col-md-3 feature-grid">
 								<img src="images/newfour.jpg" class="img-responsive" alt="/">
-								<h5 id = "newfour"></h5>
-								<p id = "newfourdes"></p>
-								<a href="https://www.bbc.com/news/world-us-canada-55353178"><span>Know More</span></a>
+								<?php foreach ($news_four as $new_four) { ?>
+								<h5><?php echo htmlspecialchars($new_four['Title']); ?></h5>
+								<p><?php echo htmlspecialchars($new_four['Brief']); ?></p>
+								<a href= <?php echo htmlspecialchars($new_four['Links']); ?>><span>Know More</span></a>
+								<?php } ?>
 							</div>
 							<div class="clearfix"></div>
 						</div>
@@ -388,12 +426,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-3 footer-grid">
 									<h4>Recent Posts</h4>
 									<ul>
-										<li><a href="#" id="postOne"></a></li>
-										<li><a href="#" id="postTwo"></a></li>
-										<li><a href="#" id="postThree"></a></li>
-										<li><a href="#" id="postFour"></a></li>
-										<li><a href="#" id="postFive"></a></li>
-										<li><a id="postSix" href="#"></a></li>
+										<?php foreach ($posts as $post) { ?>
+										<li><a href=<?php echo htmlspecialchars($post['Link']); ?>><?php echo htmlspecialchars($post['Post_name']); ?></a></li>
+										<?php } ?>
 									</ul>
 								</div>
 								<div class="col-md-3 footer-grid">
