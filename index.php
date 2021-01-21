@@ -27,12 +27,14 @@ require_once 'supportive_php/connection.php';
 	$display_post = mysqli_query ($conn,$sql_post);
 	$posts = mysqli_fetch_all($display_post,MYSQLI_ASSOC);
 	*/
+	// activities//
+	$sql_activities = 'SELECT * FROM activities ORDER BY consequence DESC';
+	$display_activities = mysqli_query ($conn,$sql_activities);
+	$row_activities = mysqli_num_rows($display_activities);
+	//////////////////////////////////////////////////////////////
 	
-	$sql_one = 'SELECT * FROM activities Where consequence = 1';
-	$display_one = mysqli_query ($conn,$sql_one);
-	$activities = mysqli_fetch_all($display_one, MYSQLI_ASSOC);
+//	print_r($activities);
 	
-	mysqli_close($conn);
 ?>
 
 <!DOCTYPE HTML>
@@ -282,38 +284,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="container">
 						<h3>Activities</h3>
 						<div class="feature-grids">
-							<div class="col-md-3 feature-grid">
-								<img src="images/newone.jpg" class="img-responsive" alt="/">
-								<?php foreach ($activities as $activity_one) { ?>
-									<h5><?php echo htmlspecialchars($activity_one['title']); ?></h5>
-									<p><?php echo htmlspecialchars($activity_one['brief']); ?></p>
-									<a href= <?php echo htmlspecialchars($activity_one['link']); ?>><span>Know More</span></a>
-								<?php } ?>
-							</div>
-							<div class="col-md-3 feature-grid">
-								<img src="images/newthree.jpg" class="img-responsive" alt="/">
-									<?php foreach ($news_two as $new_two) { ?>
-									<h5><?php echo htmlspecialchars($new_two['Title']); ?></h5>
-									<p><?php echo htmlspecialchars($new_two['Brief']); ?></p>
-									<a href= <?php echo htmlspecialchars($new_two['Links']); ?>><span>Know More</span></a>
-								<?php } ?>
-							</div>
-							<div class="col-md-3 feature-grid">
-								<img src="images/newtwo.jpg" class="img-responsive" alt="/">
-								<?php foreach ($news_three as $new_three) { ?>
-								<h5><?php echo htmlspecialchars($new_three['Title']); ?></h5>
-								<p><?php echo htmlspecialchars($new_three['Brief']); ?></p>
-								<a href= <?php echo htmlspecialchars($new_three['Links']); ?>><span>Know More</span></a>
-								<?php } ?>
-							</div>
-							<div class="col-md-3 feature-grid">
-								<img src="images/newfour.jpg" class="img-responsive" alt="/">
-								<?php foreach ($news_four as $new_four) { ?>
-								<h5><?php echo htmlspecialchars($new_four['Title']); ?></h5>
-								<p><?php echo htmlspecialchars($new_four['Brief']); ?></p>
-								<a href= '"$new_four['Links']"'><span>Know More</span></a>
-								<?php } ?>
-							</div>
+							<?php 
+								unlink('8762.jpg');
+								for ($x=0;$x<4;$x++)
+									{?>
+										<?php  $activities = mysqli_fetch_array($display_activities, MYSQLI_ASSOC); ?>
+										<div class="col-md-3 feature-grid">
+										<img src="images/newone.jpg" class="img-responsive" alt="/">
+										<h5><?php echo htmlspecialchars($activities['title']); ?></h5>
+										<p><?php echo htmlspecialchars($activities['brief']); ?></p>
+										<a href= <?php echo htmlspecialchars($activities['link']); ?>>
+										<span>Know More</span></a>
+										</div>
+										
+							<?php	}?>
 							<div class="clearfix"></div>
 						</div>
 					</div>
@@ -386,3 +370,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!--copy-->
 </body>
 </html>>
+
+<?php mysqli_close($conn); ?>
