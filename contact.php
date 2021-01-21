@@ -1,3 +1,14 @@
+<?php 
+require_once 'supportive_php/connection.php';
+?>
+
+<?php
+
+	
+	mysqli_close($conn);
+?>
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -50,25 +61,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<!---Brand and toggle get grouped for better mobile display--->
 						<div class="navbar-header">
 							<div class="navbar-brand">
-								<h1><a href="index.html"><span>Meet </span>You~</a></h1>
+								<h1><a href="index.php"><span>Meet </span>You~</a></h1>
 							</div>
 						</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="blog.html">Activities</a></li>
+								<li><a href="index.php">Home</a></li>
+								<li><a href="blog.php">Activities</a></li>
 								<li>
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find The One<span class="caret"></span></a>
 											<ul class="dropdown-menu">
-												<li><a href="male.html">Him</a></li>
-												<li><a href="female.html">Her</a></
+												<li><a href="male.php">Him</a></li>
+												<li><a href="female.php">Her</a></li>
 											</ul>
+											
 								</li>
+								<li class="active" ><a href="contact.php">Contact<span class="sr-only">(current)</span></a></li>
 							</ul>
-							<li class="active" ><a href="contact.html">Contact<span class="sr-only">(current)</span></a></li>
-							<div class="clearfix"></div>
+							<div>
 						</div>
 						
 					</nav>
@@ -90,10 +102,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="contact-grids">
 						<div class="col-md-8 contact-grid">
 							<h5>Fill out the form and we will get back to you within 24 hours</h5>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<div class="clearfix"></div>
 							<form>
 								<input id="name" type="text" value="Name " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+								<input id="wechat" type="text" value="Wechat" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
+								<input id="phone" type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
+								<input id="email" type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
+							<!--
 								<input id="email" type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
 								<input id="phone" type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
+							-->
 								<textarea id="comment" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Special Instruction/Comments...';}" required="">Special Instruction/Comments...</textarea>
 								<input type="submit" onclick="Feedback()" value="Submit" >
 								<p id="show"></p>
@@ -112,9 +131,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="clearfix"></div>
 							</div>
 							<ul>
-									<li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i> Mobile :</li>
-									<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i> <a href="#"><a href="mailto:info@example.com">info@example.com</a></a></li>
-									<li><i class="glyphicon glyphicon-print" aria-hidden="true"></i> Fax :</li>
+									<li><i class="glyphicon glyphicon-phone-alt" aria-hidden="true"></i> Mobile : </li>
+									<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i> Email : <a href="mailto:info@example.com">info@example.com</a></li>
+									<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i> Wechat : </li>
+									<li><i class="glyphicon glyphicon-home" aria-hidden="true"></i> Address : </li>
+									<li><i class="glyphicon glyphicon-qrcode" aria-hidden="true"></i> Barcode : </li>
+									<img style="height:150px;width:200px;" src="8762.jpg" alt="">
 								</ul>
 
 						</div>

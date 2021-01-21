@@ -4,6 +4,7 @@ require_once 'supportive_php/connection.php';
 
 <?php
 
+/*
 	$sql_one = 'SELECT * FROM news Where ID = 1';
 	$display_one = mysqli_query ($conn,$sql_one);
 	$news_one = mysqli_fetch_all($display_one, MYSQLI_ASSOC);
@@ -25,7 +26,13 @@ require_once 'supportive_php/connection.php';
 	$sql_post = 'SELECT * FROM post';
 	$display_post = mysqli_query ($conn,$sql_post);
 	$posts = mysqli_fetch_all($display_post,MYSQLI_ASSOC);
+	*/
 	
+	$sql_one = 'SELECT * FROM activities Where consequence = 1';
+	$display_one = mysqli_query ($conn,$sql_one);
+	$activities = mysqli_fetch_all($display_one, MYSQLI_ASSOC);
+	
+	mysqli_close($conn);
 ?>
 
 <!DOCTYPE HTML>
@@ -81,6 +88,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body>
+			
+			<img style="position:fixed;height:150px;width:150px;bottom:15px;right:10px;display:block;" src="8762.jpg" alt="">
 
 			<div class="header-section">
 				<div class="container">
@@ -96,24 +105,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<!---Brand and toggle get grouped for better mobile display--->
 						<div class="navbar-header">
 							<div class="navbar-brand">
-								<h1><a href="index.html"><span>Meet </span>You~</a></h1>
+								<h1><a href="index.php"><span>Meet </span>You~</a></h1>
 							</div>
 						</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
-								<li><a href="blog.html">Activities</a></li>
+								<li class="active"><a href="index.php">Home <span class="sr-only">(current)</span></a></li>
+								<li><a href="blog.php">Activities</a></li>
 								<li>
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find The One<span class="caret"></span></a>
 											<ul class="dropdown-menu">
-												<li><a href="male.html">Him</a></li>
-												<li><a href="female.html">Her</a></
+												<li><a href="male.php">Him</a></li>
+												<li><a href="female.php">Her</a></
 											</ul>
 								</li>
 							</ul>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="contact.php">Contact</a></li>
 							<div class="clearfix"></div>
 						</div>
 						
@@ -151,92 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="copyrights">Authorized by<a href="" >Meet You</a></div>
 <!---banner--->
-	<div class="content">
-		<div class="place-section">
-			<div class="container">
-				<h2>Find her/him</h2>
-				<div class="place-grids">
-					<div class="col-md-3 place-grid">
-						<h5>Gender you are interested</h5>
-						<select class="sel">
-						<option value="">Male</option>
-						<option value="">Female</option>
-						<option value="">Bisexual</option>
-						</select>
-					</div>
-					<div class="col-md-3 place-grid">
-					<h5>Coutry you are</h5>
-					<select class="sel">
-						<option value="">Australia</option>
-						<option value="">China</option>
-						<option value="">New Zealand</option>
-						</select>
-					</div>
-					<div class="col-md-3 place-grid">
-					<h5>Age range</h5>
-					<select class="sel">
-						<option value="">18-25</option>
-						<option value="">25-30</option>
-						<option value="">30-36</option>
-						<option value="">36-45</option>
-						<option value="">45-55</option>
-						<option value="">55-65</option>
-						<option value="">65-75</option>
-					</select>
-					</div>
-					<div class="col-md-3 place-grid">
-					<h5>Max Educated Level</h5>
-					<select class="sel">
-						<option value="">High School</option>
-						<option value="">Tafe</option>
-						<option value="">Bachelor</option>
-						<option value="">Master</option>
-						<option value="">PHD</option>
-						</select>
-					</div>
-					<div class="clearfix"></div>
-					<div class="col-md-2 place-grid1">
-						<h5>Min income per year (AUD)</h5>
-						<select class="sel">
-							<option value="">any</option>
-							<option value="">Any</option>
-							<option value="">$10000</option>
-							<option value="">$20000</option>
-							<option value="">$30000</option>
-							<option value="">$40000</option>
-							<option value="">$50000</option>
-							<option value="">$60000</option>
-							<option value="">More than $60000</option>
-						</select>
-					</div>
-					<div class="col-md-2 place-grid1">
-						<h5>Max income per year (AUD)</h5>
-						<select class="sel">
-							<option value="">any</option>
-							<option value="">$40000</option>
-							<option value="">$55000</option>
-							<option value="">$65000</option>
-							<option value="">$75000</option>
-							<option value="">$85000</option>
-							<option value="">$95000</option>
-							<option value="">More than $100000</option>
-						</select>
-					</div>
-					<div class="col-md-2 place-grid1">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</div>
-					<div class="col-md-2 place-grid1">
-						&nbsp;&nbsp;
-					</div>
-					<div class="col-md-4 search">
-					<form action="forrent.html">
-						<input type="submit" value="Search">
-					</form>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</div>							
+	<div class="content">		
 			<div class="offering">
 				<div class="container">
 					<h3>Popular Matchers</h3>
@@ -356,14 +280,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!---Featured Properties--->
 				<div class="feature-section">
 					<div class="container">
-						<h3>Hot News/Topic</h3>
+						<h3>Activities</h3>
 						<div class="feature-grids">
 							<div class="col-md-3 feature-grid">
 								<img src="images/newone.jpg" class="img-responsive" alt="/">
-								<?php foreach ($news_one as $new_one) { ?>
-									<h5><?php echo htmlspecialchars($new_one['Title']); ?></h5>
-									<p><?php echo htmlspecialchars($new_one['Brief']); ?></p>
-									<a href= <?php echo htmlspecialchars($new_one['Links']); ?>><span>Know More</span></a>
+								<?php foreach ($activities as $activity_one) { ?>
+									<h5><?php echo htmlspecialchars($activity_one['title']); ?></h5>
+									<p><?php echo htmlspecialchars($activity_one['brief']); ?></p>
+									<a href= <?php echo htmlspecialchars($activity_one['link']); ?>><span>Know More</span></a>
 								<?php } ?>
 							</div>
 							<div class="col-md-3 feature-grid">
@@ -387,7 +311,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<?php foreach ($news_four as $new_four) { ?>
 								<h5><?php echo htmlspecialchars($new_four['Title']); ?></h5>
 								<p><?php echo htmlspecialchars($new_four['Brief']); ?></p>
-								<a href= <?php echo htmlspecialchars($new_four['Links']); ?>><span>Know More</span></a>
+								<a href= '"$new_four['Links']"'><span>Know More</span></a>
 								<?php } ?>
 							</div>
 							<div class="clearfix"></div>

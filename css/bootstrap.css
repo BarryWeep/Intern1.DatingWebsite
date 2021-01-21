@@ -2931,10 +2931,10 @@ input[type="button"].btn-block {
   content: "\e181";
 }
 .glyphicon-earphone:before {
-  content: "\e182";
+  content: "\E182";
 }
 .glyphicon-phone-alt:before {
-  content: "\e183";
+  content: "\E183";
 }
 .glyphicon-tower:before {
   content: "\e184";

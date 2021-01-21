@@ -1,3 +1,41 @@
+<?php 
+require_once 'supportive_php/connection.php';
+?>
+
+<?php
+
+/*
+	$sql_one = 'SELECT * FROM news Where ID = 1';
+	$display_one = mysqli_query ($conn,$sql_one);
+	$news_one = mysqli_fetch_all($display_one, MYSQLI_ASSOC);
+	
+	$sql_two = 'SELECT * FROM news Where ID = 2';
+	$display_two = mysqli_query ($conn,$sql_two);
+	$news_two = mysqli_fetch_all($display_two, MYSQLI_ASSOC);
+	
+	
+	$sql_three = 'SELECT * FROM news Where ID = 3';
+	$display_three = mysqli_query ($conn,$sql_three);
+	$news_three = mysqli_fetch_all($display_three, MYSQLI_ASSOC);
+	
+	
+	$sql_four  = 'SELECT * FROM news Where ID = 4';
+	$display_four = mysqli_query ($conn,$sql_four);
+	$news_four = mysqli_fetch_all($display_four, MYSQLI_ASSOC);
+	
+	$sql_post = 'SELECT * FROM post';
+	$display_post = mysqli_query ($conn,$sql_post);
+	$posts = mysqli_fetch_all($display_post,MYSQLI_ASSOC);
+	*/
+	
+	$sql_one = 'SELECT * FROM activities Where consequence = 1';
+	$display_one = mysqli_query ($conn,$sql_one);
+	$activities = mysqli_fetch_all($display_one, MYSQLI_ASSOC);
+	
+	
+	mysqli_close($conn);
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -66,24 +104,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<!---Brand and toggle get grouped for better mobile display--->
 						<div class="navbar-header">
 							<div class="navbar-brand">
-								<h1><a href="index.html"><span>Meet </span>You~</a></h1>
+								<h1><a href="index.php"><span>Meet </span>You~</a></h1>
 							</div>
 						</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li><a href="index.html">Home</a></li>
-								<li class="active"><a href="blog.html">Activities<span class="sr-only">(current)</span></a></li>
+								<li><a href="index.php">Home</a></li>
+								<li class="active"><a href="blog.php">Activities<span class="sr-only">(current)</span></a></li>
 								<li>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find The One<span class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="male.html">Him</a></li>
-										<li><a href="female.html">Her</a></
+										<li><a href="male.php">Him</a></li>
+										<li><a href="female.php">Her</a></
 									</ul>
 								</li>
 							</ul>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="contact.php">Contact</a></li>
 							<div class="clearfix"></div>
 						</div>
 						
@@ -107,9 +145,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="blog">
 								<h3><a id="newone" href="single.html"></a></h3>
 								<p id="newonedate"></p>
-								<a href="single.html"><img src="images/newfour.jpg" class="img-responsive" alt=""/></a>
-								<p id="newonedes"></p>
+								<?php foreach ($activities as $activity_one) { ?>
+									<h3><?php echo htmlspecialchars($activity_one['title']); ?></h3>
+									<p><?php echo htmlspecialchars($activity_one['update_date']); ?></p>
+									<a href="single.html"><img src="images/newfour.jpg" class="img-responsive" alt=""/></a>
+									<p><?php echo htmlspecialchars($activity_one['description']); ?></p>
 								<a href="single.html" class="button5 hvr-shutter-out-horizontal">Read More</a>
+								<?php } ?>
 							</div>
 							<div class="blog blog2">
 								<h3><a id="newtwo" href="single.html"></a></h3>
@@ -213,14 +255,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 						</div>
 					</div>
-					<!---footer--->
-					<!--copy-->
+			<!---footer--->
+			<!--copy-->
 					<div class="copy-section">
 						<div class="container">
 							<p id= "copyright_main"></p>
 						</div>
 					</div>
-				<!--copy-->
+			<!--copy-->
 
 </body>
 </html>
