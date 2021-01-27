@@ -22,22 +22,22 @@ p{
 }
 ul{
 	padding:0 0;
-	margin:0 0;
+	margin:0 0;	
 }
 body{
 	padding:0 0;
-	margin:0 0;
+	margin:0 0; 
 	font-family: 'Open Sans', sans-serif;
 }
 .header-section {
-        background: #F9D790; 
+        background: #333d47;
 }
 .head-top {
     padding: .2em 0;
-	border-bottom: 2px solid #FF9900;
+	border-bottom: 1px solid #565A5A;
 }
 .social-icon {
-    float: left;
+    float: left;   
 	padding-top: .3em;
 }
 .social-icon a i {
@@ -80,17 +80,17 @@ body{
     display: inline-block;
 	margin-right: .9em;
     padding-top: .5em;
-	color: #FFFFFF;
+	color: #C6C7C7;
 }
 .email ul li i {
     font-size: 1.2em;
     vertical-align: middle;
     margin-right: 0.5em;
-    color: #FFFFFF;
+    color: #888f90;
 }
 .email ul li a {
     font-size: 1.1em;
-    color:#FFFFFF;
+    color: #C6C7C7;
 	text-decoration: none;
 	outline: none;
 }
@@ -117,7 +117,7 @@ body{
     min-height: 50px;
     margin-bottom: 0;
     border: none !important;
-	background: #F9D790;
+	background: #333d47;
 	padding-top: 4em;
 }
 .navbar-nav {
@@ -142,14 +142,14 @@ div#bs-example-navbar-collapse-1 {
 }
 .phone span {
     font-size: 1.8em;
-    color: #FFFFFF;
+    color: #fff;
 }
 .navbar-collapse {
     padding-right: 0;
     padding-left: 0;
 }
 .navbar-default .navbar-nav > li > a {
-       color: #FFFFFF;
+       color: #C6C7C7;
 }
 .navbar-nav > li > a {
     padding: 1.2em .8em;
@@ -194,30 +194,25 @@ div#bs-example-navbar-collapse-1 {
 }
 /*--- slider-css --*/
 .banner1{
-	background:url(../images/edited1.png) no-repeat 0px 0px;
+	background:url(../images/banner/bnr1.jpg) no-repeat 0px 0px;
 	background-size:cover;
-	 max-height: 100%;
-
+	min-height:550px;
 }
 .banner2{
-	background:url(../images/banner2.jpg) no-repeat 0px 0px;
+	background:url(../images/banner/bnr4.jpg) no-repeat 0px 0px;
 	background-size:cover;
-	max-height: 100%;
-
+	min-height:550px;
 }
 .banner3{
-	background:url(../images/banner3.jpg) no-repeat 0px 0px;
+	background:url(../images/banner/bnr3.jpg) no-repeat 0px 0px;
 	background-size:cover;
-	max-height: 100%;
+	min-height:550px;
 }
-
-
 .slider {
 	position: relative;
 }
-
 .rslides {
- position: relative;
+  position: relative;
   list-style: none;
   overflow: hidden;
   width: 100%;
@@ -227,13 +222,12 @@ div#bs-example-navbar-collapse-1 {
 .rslides div.slid {
   -webkit-backface-visibility: hidden;
   width: 100%;
- height:100%
   left: 0;
   top: 0;
   }
 .rslides img {
   display: block;
-  height: 100%;
+  height: auto;
   float: left;
   width: 100%;
   border: 0;
@@ -283,7 +277,7 @@ div#bs-example-navbar-collapse-1 {
 }
 .callbacks_tabs li{
 	display:inline-block;
-
+	
 }
 ul.callbacks_tabs.callbacks1_tabs {
 	position: absolute;
@@ -618,7 +612,7 @@ div#owl-demo {
     margin-top: 3em;
 }
 .footer-section {
-    background:#F9D790;
+    background: #222;
     padding: 5em 0;
 }
 .footer-grid h4 {
@@ -650,7 +644,7 @@ div#owl-demo {
 .copy-section{
 	padding:2em 0;
 	text-align:center;
-	background: #FF9933;
+	background: #333d47;
 }
 .copy-section p {
 	font-size: 0.9em;
@@ -670,11 +664,11 @@ div#owl-demo {
 	margin: 0 0.3em
 }
 .banner-section {
-    background: url(../images/123.jpg) no-repeat 0px 0px;
+    background: url(../images/banner/bnr1.jpg) no-repeat 0px 0px;
     background-size: cover;
     min-height: 400px;
 	text-align: center;
-	    padding: 2em 0 0;
+	    padding: 5em 0 0;
 }
 .banner-section h2{
     font-size: 3em;
@@ -1024,7 +1018,7 @@ a.button4 {
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
 .main-service {
-    text-align: center;
+    text-align: center;   
 	padding: 4em 0;
 }
 .main-service h3,.operation-consulting h3 {
@@ -1822,7 +1816,7 @@ a.button2 {
     width: 90%;
     padding: .5em 1em;
     border: 1px solid#ddd;
-    outline: none;
+    outline: none;  
 	font-size: 1em;
 }
 .mail {
@@ -1949,7 +1943,7 @@ a.button2 {
 	    margin-top: 2em;
 }
 .gallery-grid:hover span.rollover1 {
-    background: url(../images/function/likeMarks.png) center no-repeat rgba(45, 169, 225, 0.88);
+    background: url(../images/plues1.png) center no-repeat rgba(45, 169, 225, 0.88);
     cursor: pointer;
     height: 193px;
     width: 255px;
@@ -1963,7 +1957,7 @@ a.button2 {
     transition: all 0.3s ease-out;
 }
 .gallery-grid1:hover span.rollover1 {
-    background: url(../images/function/likeMarks.png) center no-repeat rgba(45, 169, 225, 0.88);
+    background: url(../images/plues1.png) center no-repeat rgba(45, 169, 225, 0.88);
     cursor: pointer;
     height: 263px;
     width: 350px;
@@ -1977,7 +1971,7 @@ a.button2 {
     transition: all 0.3s ease-out;
 }
 .gallery-grid2:hover span.rollover1 {
-    background: url(../images/function/likeMarks.png) center no-repeat rgba(45, 169, 225, 0.88);
+    background: url(../images/plues1.png) center no-repeat rgba(45, 169, 225, 0.88);
     cursor: pointer;
     height: 270px;
     width: 540px;
@@ -2045,7 +2039,7 @@ li.list-group-item1 {
 .label {
   font-weight: 300 !important;
   border-radius:4px;
-}
+}  
 .grid_5{
 	background:none;
 	padding:2em 0;
@@ -2403,7 +2397,7 @@ li.list-group-item1 {
 }
 .login-grids p a{
 	color:#faa43d;
-	text-decoration:none;
+	text-decoration:none;	
 }
 .modal-header .close {
     outline: none;
@@ -3027,7 +3021,6 @@ div#bs-example-navbar-collapse-1 {
     margin: 0;
     width: 100%;
     text-align: center;
-	background: #E25B74;
 }
 .phone {
     float: none;
@@ -3567,7 +3560,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 .sel {
     width: 100%;
     padding: .3em .8em;
-}
+}	
 .place-section h2, .banner-section h2 {
     font-size: 2em;
 }

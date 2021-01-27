@@ -1,7 +1,33 @@
-<!DOCTYPE HTML>
+<?php 
+require_once 'supportive_php/connection.php';
+?>
+
+<?php
+	// activities_banner//
+	$sql_activities = 'SELECT * FROM activities ORDER BY consequence DESC';
+	$display_activities = mysqli_query ($conn,$sql_activities);
+	//////////////////////////////////////////////////////////////
+	//MeetyouDescription//
+	$sql_meetyou = 'SELECT * FROM meetyoudescription ORDER BY indexOne DESC';
+	$display_meetyou = mysqli_query ($conn,$sql_meetyou);
+	$meetyoudes = mysqli_fetch_array($display_meetyou, MYSQLI_ASSOC);
+	//////////////////////////////////////////////////////////////
+	//post
+	$sql_post = 'SELECT * FROM posts ORDER BY Post_index DESC';
+	$display_post = mysqli_query ($conn,$sql_post);
+	/////////////////////////////////////////////////////////////
+	
+	//hoster
+	$sql_hoster = 'SELECT * FROM hosterinformation';
+	$display_hoster = mysqli_query ($conn,$sql_hoster);
+	$hosters = mysqli_fetch_array($display_hoster,MYSQLI_ASSOC);
+	/////////////////////////////////////////////////////////////
+?>
+
+
 <html>
 <head>
-<title>Male Gallery</title>
+<title>Female Gallery</title>
 <!---css--->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="css/style.css" rel='stylesheet' type='text/css' />
@@ -24,12 +50,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---fonts-->
 <!-- pop-up -->
 <link rel="stylesheet" href="css/swipebox.css">
-			<script src="js/jquery.swipebox.min.js"></script> 
+
 <!-- pop-up -->
 
 </head>
 <body>
-
+		<img style="position:fixed;height:150px;width:150px;bottom:15px;right:10px;display:block;" src="8762.jpg" alt="">
 		<!---header--->
 			<div class="header-section">
 				<div class="container">
@@ -53,16 +79,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
 								<li><a href="index.php">Home <span class="sr-only">(current)</span></a></li>
-								<li><a href="blog.html">Activities</a></li>
+								<li><a href="activities.php">Activities</a></li>
 								<li class="dropdown active">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find The One<span class="caret"></span></a>
 											<ul class="dropdown-menu">
-												<li><a href="male.html">Him</a></li>
-												<li><a href="female.html">Her</a></
+												<li><a href="male.php">Him</a></li>
+												<li><a href="female.php">Her</a></
 											</ul>
 								</li>
 							</ul>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="contact.php">Contact</a></li>
 							<div class="clearfix"></div>
 						</div>
 						
@@ -84,52 +110,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-3 gallery-grid">
 							<div class="size">
 								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="1">
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="1">
 							</div>
 						</div>
 						<div class="col-md-3 gallery-grid">
 							<div class="size">
 								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="2">
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="2">
 							</div>
 						</div>
 						<div class="col-md-3 gallery-grid">
 							<div class="size">
 								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="3">
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="3">
 							</div>
 						</div>
 						<div class="col-md-3 gallery-grid">
 							<div class="size">
 								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="4">
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="gallery-grids galry">
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="5">
-							</div>
-						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="6">
-							</div>
-						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="7">
-							</div>
-						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="8">
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="4">
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -138,25 +137,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-3 gallery-grid">
 							<div class="size">
 								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="9">
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="5">
 							</div>
 						</div>
 						<div class="col-md-3 gallery-grid">
 							<div class="size">
 								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="10">
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="6">
 							</div>
 						</div>
 						<div class="col-md-3 gallery-grid">
 							<div class="size">
 								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="11">
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="7">
 							</div>
 						</div>
 						<div class="col-md-3 gallery-grid">
 							<div class="size">
 								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="12">
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="8">
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="gallery-grids galry">
+						<div class="col-md-3 gallery-grid">
+							<div class="size">
+								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="9">
+							</div>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<div class="size">
+								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="10">
+							</div>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<div class="size">
+								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="11">
+							</div>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<div class="size">
+								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
+								<img src="images/female/a1.jpg" width="100%" height="100%" alt="12">
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -164,40 +190,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 		</div>
-	<!---footer--->
+					<!---footer--->
 					<div class="footer-section">
 						<div class="container">
 							<div class="footer-grids">
 								<div class="col-md-3 footer-grid">
 									<h4>About Meet you</h4>
-									<p id="aboutMeSub"></p>
+									<p><?php echo htmlspecialchars($meetyoudes['Decription']); ?></p>
+								</div>
+								<div class="col-md-3 footer-grid">
+									<h4>Activities</h4>
+									<ul>
+									<?php 
+									for ($x=0;$x<4;$x++)
+									{?>
+										<?php  $activitiesindex = mysqli_fetch_array($display_activities, MYSQLI_ASSOC); ?>
+										<li><a href=""><?php echo htmlspecialchars($activitiesindex['title']); ?></a></li>
+										
+							<?php	}?>
+										
+									</ul>
 								</div>
 								<div class="col-md-3 footer-grid">
 									<h4>Recent Posts</h4>
 									<ul>
-										<li><a href="#" id="postOne"></a></li>
-										<li><a href="#" id="postTwo"></a></li>
-										<li><a href="#" id="postThree"></a></li>
-										<li><a href="#" id="postFour"></a></li>
-										<li><a href="#" id="postFive"></a></li>
-										<li><a id="postSix" href="#"></a></li>
-									</ul>
-								</div>
-								<div class="col-md-3 footer-grid">
-									<h4>Useful links</h4>
-									<ul>
-										<li><a href="terms.html">Terms of Use</a></li>
-										<li><a href="privacy.html">Privacy Policy</a></li>
-										<li><a href="contact.html">Contact Support </a></li>
-										<li><a href="faqs.html">FAQs</a></li>
+									 <?php for ($x=0;$x<6;$x++)
+									 { ?>
+										<?php $posts = mysqli_fetch_array($display_post,MYSQLI_ASSOC); ?>
+										<li><a href="activities.php"><?php echo $posts['Post_title']; ?></a></li>
+									<?php 
+									 }?>
 									</ul>
 								</div>
 								<div class="col-md-3 footer-grid">
 									<h4>Get In Touch</h4>
-									<p id= "TouchOne"></p>
-									<p id= "TouchTwo"></p>
-									<p id= "TouchThree"></p>
-									<p id= "TouchFou"><a href="#"> @mail.com</a></p>
+									<ul>
+										<li><a href="contact.php">Name : <?php echo htmlspecialchars($hosters['Name'])?></a></li>
+										<li><a href="contact.php">Email : <?php echo htmlspecialchars($hosters['email'])?></a></li>
+										<li><a href="contact.php">Wechat : <?php echo htmlspecialchars($hosters['wechat'])?></a></li>
+										<li><a href="contact.php">Office : <?php echo htmlspecialchars($hosters['address'])?></a></li>
+									</ul>
 								</div>
 							<div class="clearfix"> </div>
 							</div>
@@ -212,6 +244,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 				<!--copy-->
-
+				<?php 	mysqli_close($conn); ?>
 </body>
 </html>

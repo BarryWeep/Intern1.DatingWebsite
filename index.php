@@ -4,34 +4,36 @@ require_once 'supportive_php/connection.php';
 
 <?php
 
-/*
-	$sql_one = 'SELECT * FROM news Where ID = 1';
-	$display_one = mysqli_query ($conn,$sql_one);
-	$news_one = mysqli_fetch_all($display_one, MYSQLI_ASSOC);
-	
-	$sql_two = 'SELECT * FROM news Where ID = 2';
-	$display_two = mysqli_query ($conn,$sql_two);
-	$news_two = mysqli_fetch_all($display_two, MYSQLI_ASSOC);
-	
-	
-	$sql_three = 'SELECT * FROM news Where ID = 3';
-	$display_three = mysqli_query ($conn,$sql_three);
-	$news_three = mysqli_fetch_all($display_three, MYSQLI_ASSOC);
-	
-	
-	$sql_four  = 'SELECT * FROM news Where ID = 4';
-	$display_four = mysqli_query ($conn,$sql_four);
-	$news_four = mysqli_fetch_all($display_four, MYSQLI_ASSOC);
-	
-	$sql_post = 'SELECT * FROM post';
-	$display_post = mysqli_query ($conn,$sql_post);
-	$posts = mysqli_fetch_all($display_post,MYSQLI_ASSOC);
-	*/
-	// activities//
+	// activities_banner//
 	$sql_activities = 'SELECT * FROM activities ORDER BY consequence DESC';
 	$display_activities = mysqli_query ($conn,$sql_activities);
-	$row_activities = mysqli_num_rows($display_activities);
 	//////////////////////////////////////////////////////////////
+	//MeetyouDescription//
+	$sql_meetyou = 'SELECT * FROM meetyoudescription ORDER BY indexOne DESC';
+	$display_meetyou = mysqli_query ($conn,$sql_meetyou);
+	$meetyoudes = mysqli_fetch_array($display_meetyou, MYSQLI_ASSOC);
+	//////////////////////////////////////////////////////////////
+	//post
+	$sql_post = 'SELECT * FROM posts ORDER BY Post_index DESC';
+	$display_post = mysqli_query ($conn,$sql_post);
+	/////////////////////////////////////////////////////////////
+	
+	
+	//female select
+	$sql_female = 'SELECT * FROM female ORDER BY UserIndex DESC';
+	$display_female = mysqli_query ($conn,$sql_female);
+	/////////////////////////////////////////////////////////////
+	
+	//male select
+	$sql_male = 'SELECT * FROM male ORDER BY UserIndex DESC';
+	$display_male = mysqli_query ($conn,$sql_male);
+	/////////////////////////////////////////////////////////////
+	
+	//hoster
+	$sql_hoster = 'SELECT * FROM hosterinformation';
+	$display_hoster = mysqli_query ($conn,$sql_hoster);
+	$hosters = mysqli_fetch_array($display_hoster,MYSQLI_ASSOC);
+	/////////////////////////////////////////////////////////////
 	
 //	print_r($activities);
 	
@@ -115,7 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
 								<li class="active"><a href="index.php">Home <span class="sr-only">(current)</span></a></li>
-								<li><a href="blog.php">Activities</a></li>
+								<li><a href="activities.php">Activities</a></li>
 								<li>
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find The One<span class="caret"></span></a>
 											<ul class="dropdown-menu">
@@ -141,7 +143,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<h3>Understand You</h3>
 								<p>The problem with persons have a lack of love is they don't know love looks like,<br/> so its easy from they get tricked,<br/> to see thing aren't there,<br/> but i guess we are lying to ourselves all the time</p>
 								<a href="#" class="button">know more</a>
-						  </div>
+							</div>
 					</div>
 					<div class="slid banner2">
 						  <div class="caption">
@@ -166,118 +168,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="offering">
 				<div class="container">
 					<h3>Popular Matchers</h3>
+				<!--                     start                       -->
+				<?php
+				for ($x=0;$x<3;$x++)
+				{ ?>	
+					<!-- female display -->
 					<div class="offer-grids">
 						<div class="col-md-6 offer-grid">
 							<div class="offer-grid1">
 								<div class="offer1">
 									<div class="offer-left">
-										<a href="Personal.html" class="mask"><img src="images/a3.jpg" class="img-responsive zoom-img" alt=""/></a>
+										<a href="Personal.html" class="mask"><img src="images/female/a3.jpg" class="img-responsive zoom-img" alt=""/></a>
 									</div>
 									<div class="offer-right">
-										<h5><label id= "first_name_one"></label> </h5>
-										<p><label>Gender interested: </label><span id = "gender_one"></span></p> 
-										<p><label>Location: </label><span id= "country_one"></span></p> 
-										<p><label>Age: </label><span id = "age_one"></span></p>  
-										<p><label>Occupation: </label><span id="occupation_one"></span></p> 
+									<?php  $females = mysqli_fetch_array($display_female, MYSQLI_ASSOC); ?>
+										<h5><label><?php echo htmlspecialchars($females['UserName']);?></label> </h5>
+										<p><label>Gender: </label><span><?php echo htmlspecialchars($females['Gender']);?></span></p> 
+										<p><label>Location: </label><span><?php echo htmlspecialchars($females['location']);?></span></p> 
+										<p><label>Age: </label><span><?php echo htmlspecialchars($females['Age']);?></span></p>  
+										<p><label>Occupation: </label><span><?php echo htmlspecialchars($females['Occupation']);?></span></p> 
 									</div>
 									<div class="clearfix"></div>
 								</div>
 							</div>
 						</div>
-							<div class="col-md-6 offer-grid">
-								<div class="offer-grid1">
-									<div class="offer1">
-										<div class="offer-left">
-											<a href="Personal.html" class="mask"><img src="images/a2.jpg" class="img-responsive zoom-img" alt=""/></a>
-									</div>
-										<div class="offer-right">
-											<h5><label id= "first_name_two"></label></h5>
-											<p><label>Gender interested: </label><span id= "gender_two"> </span></p> 
-											<p><label>Location: </label><span id = "country_two"> </span></p> 
-											<p><label>Age: </label><span id= "age_two"></span></p>  
-											<p><label>Occupation: </label><span id="occupation_two"></span></p> 
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-						<div class="clearfix"></div>
 					</div>
+					<!-- male display -->
 					<div class="offer-grids">
 						<div class="col-md-6 offer-grid">
 							<div class="offer-grid1">
-			
 								<div class="offer1">
 									<div class="offer-left">
-										<a href="Personal.html" class="mask"><img src="images/a.jpg" class="img-responsive zoom-img" alt=""/></a>
+										<a href="Personal.html" class="mask"><img src="images/male/a2.jpg" class="img-responsive zoom-img" alt=""/></a>
 									</div>
 									<div class="offer-right">
-											<h5><label id= "first_name_three"></label></h5>
-										<p><label>Gender interested: </label><span id= "gender_three"> </span></p> 
-										<p><label>Location: </label><span id ="country_three"> </span></p> 
-										<p><label>Age: </label><span id ="age_three"> </span></p>  
-										<p><label>Occupation: </label><span id ="occupation_three"></span></p> 
+										<?php  $males = mysqli_fetch_array($display_male, MYSQLI_ASSOC); ?>
+										<h5><label><?php echo htmlspecialchars($males['UserName']); ?></label> </h5>
+										<p><label>Gender: </label><span><?php echo htmlspecialchars($males['Gender']); ?></span></p> 
+										<p><label>Location: </label><span><?php echo htmlspecialchars($males['location']); ?></span></p> 
+										<p><label>Age: </label><span><?php echo htmlspecialchars($males['Age']); ?></span></p>  
+										<p><label>Occupation: </label><span><?php echo htmlspecialchars($males['Occupation']); ?></span></p> 
 									</div>
 									<div class="clearfix"></div>
 								</div>
 							</div>
 						</div>
-							<div class="col-md-6 offer-grid">
-								<div class="offer-grid1">
-									<div class="offer1">
-										<div class="offer-left">
-											<a href="Personal.html" class="mask"><img src="images/a4.jpg" class="img-responsive zoom-img" alt=""/></a>
-									</div>
-										<div class="offer-right">
-											<h5><label id="first_name_four"></label></h5>
-										<p><label>Gender interested: </label><span id="gender_four"> </span></p> 
-										<p><label>Location: </label><span id="country_four"> </span></p> 
-										<p><label>Age: </label><span id ="age_four"> </span></p>  
-										<p><label>Occupation: </label><span id="occupation_four"></span></p> 
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-						<div class="clearfix"></div>
 					</div>
-					<div class="offer-grids">
-						<div class="col-md-6 offer-grid">
-							<div class="offer-grid1">
-								<div class="offer1">
-									<div class="offer-left">
-										<a href="Personal.html" class="mask"><img src="images/a5.jpg" class="img-responsive zoom-img" alt=""/></a>
-									</div>
-									<div class="offer-right">
-										<h5><label id= "first_name_five"></label></h5>
-										<p><label>Gender interested: </label><span id="gender_five"> </span></p> 
-										<p><label>Location: </label><span id="country_five"> </span></p> 
-										<p><label>Age: </label><span id="age_five"> </span></p>  
-										<p><label>Occupation: </label><span id="occupation_five"></span></p> 
-									</div>
-								</div>
-							</div>
-						</div>
-							<div class="col-md-6 offer-grid">
-								<div class="offer-grid1">
-									<div class="offer1">
-										<div class="offer-left">
-											<a href="Personal.html" class="mask"><img src="images/a6.jpg" class="img-responsive zoom-img" alt=""/></a>
-									</div>
-										<div class="offer-right">
-											<h5><label id="first_name_six"> </label></h5>
-											<p><label>Gender interested: </label><span id="gender_six"> </span></p> 
-											<p><label>Location: </label><span id="country_six"> </span></p> 
-											<p><label>Age: </label><span id="age_six"> </span></p>  
-											<p><label>Occupation: </label><span id="occupation_six"></span></p> 
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
+				<?php	
+				} ?>
 			</div>
 			<!---Featured Properties--->
 				<div class="feature-section">
@@ -285,7 +223,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h3>Activities</h3>
 						<div class="feature-grids">
 							<?php 
-								unlink('8762.jpg');
 								for ($x=0;$x<4;$x++)
 									{?>
 										<?php  $activities = mysqli_fetch_array($display_activities, MYSQLI_ASSOC); ?>
@@ -322,38 +259,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 					<!---testmonials--->
-	</div>
+		</div>
 					<!---footer--->
 					<div class="footer-section">
 						<div class="container">
 							<div class="footer-grids">
 								<div class="col-md-3 footer-grid">
 									<h4>About Meet you</h4>
-									<p id="aboutMeSub"></p>
+									<p><?php echo htmlspecialchars($meetyoudes['Decription']); ?></p>
+								</div>
+								<div class="col-md-3 footer-grid">
+									<h4>Activities</h4>
+									<ul>
+									<?php 
+									$display_activities_index = mysqli_query ($conn,$sql_activities);
+									for ($x=0;$x<4;$x++)
+									{?>
+										<?php  $activitiesindex = mysqli_fetch_array($display_activities_index, MYSQLI_ASSOC); ?>
+										<li><a href=""><?php echo htmlspecialchars($activitiesindex['title']); ?></a></li>
+										
+							<?php	}?>
+										
+									</ul>
 								</div>
 								<div class="col-md-3 footer-grid">
 									<h4>Recent Posts</h4>
 									<ul>
-										<?php foreach ($posts as $post) { ?>
-										<li><a href=<?php echo htmlspecialchars($post['Link']); ?>><?php echo htmlspecialchars($post['Post_name']); ?></a></li>
-										<?php } ?>
-									</ul>
-								</div>
-								<div class="col-md-3 footer-grid">
-									<h4>Useful links</h4>
-									<ul>
-										<li><a href="terms.html">Terms of Use</a></li>
-										<li><a href="privacy.html">Privacy Policy</a></li>
-										<li><a href="contact.html">Contact Support </a></li>
-										<li><a href="faqs.html">FAQs</a></li>
+									 <?php for ($x=0;$x<6;$x++)
+									 { ?>
+										<?php $posts = mysqli_fetch_array($display_post,MYSQLI_ASSOC); ?>
+										<li><a href="activities.php"><?php echo $posts['Post_title']; ?></a></li>
+									<?php 
+									 }?>
 									</ul>
 								</div>
 								<div class="col-md-3 footer-grid">
 									<h4>Get In Touch</h4>
-									<p id= "TouchOne"></p>
-									<p id= "TouchTwo"></p>
-									<p id= "TouchThree"></p>
-									<p id= "TouchFou"><a href="#"> @mail.com</a></p>
+									<ul>
+										<li><a href="contact.php">Name : <?php echo htmlspecialchars($hosters['Name'])?></a></li>
+										<li><a href="contact.php">Email : <?php echo htmlspecialchars($hosters['email'])?></a></li>
+										<li><a href="contact.php">Wechat : <?php echo htmlspecialchars($hosters['wechat'])?></a></li>
+										<li><a href="contact.php">Office : <?php echo htmlspecialchars($hosters['address'])?></a></li>
+									</ul>
 								</div>
 							<div class="clearfix"> </div>
 							</div>
@@ -368,6 +315,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 				<!--copy-->
+				<?php 	mysqli_close($conn); ?>
 </body>
 </html>>
 

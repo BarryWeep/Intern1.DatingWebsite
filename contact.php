@@ -3,9 +3,26 @@ require_once 'supportive_php/connection.php';
 ?>
 
 <?php
-
+	// activities_banner//
+	$sql_activities = 'SELECT * FROM activities ORDER BY consequence DESC';
+	$display_activities = mysqli_query ($conn,$sql_activities);
+	$row_activities = mysqli_num_rows($display_activities);
+	//////////////////////////////////////////////////////////////
+	//MeetyouDescription//
+	$sql_meetyou = 'SELECT * FROM meetyoudescription ORDER BY indexOne DESC';
+	$display_meetyou = mysqli_query ($conn,$sql_meetyou);
+	$meetyoudes = mysqli_fetch_array($display_meetyou, MYSQLI_ASSOC);
+	//////////////////////////////////////////////////////////////
+	//post
+	$sql_post = 'SELECT * FROM posts ORDER BY Post_index DESC';
+	$display_post = mysqli_query ($conn,$sql_post);
+	/////////////////////////////////////////////////////////////
 	
-	mysqli_close($conn);
+	//hoster
+	$sql_hoster = 'SELECT * FROM hosterinformation';
+	$display_hoster = mysqli_query ($conn,$sql_hoster);
+	$hosters = mysqli_fetch_array($display_hoster,MYSQLI_ASSOC);
+	
 ?>
 
 
@@ -46,7 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body>
-
+			<img style="position:fixed;height:150px;width:150px;bottom:15px;right:10px;display:block;" src="8762.jpg" alt="">
 			<div class="header-section">
 				<div class="container">
 					<div class="head-top">
@@ -69,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
 								<li><a href="index.php">Home</a></li>
-								<li><a href="blog.php">Activities</a></li>
+								<li><a href="activities.php">Activities</a></li>
 								<li>
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find The One<span class="caret"></span></a>
 											<ul class="dropdown-menu">
@@ -104,19 +121,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h5>Fill out the form and we will get back to you within 24 hours</h5>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="clearfix"></div>
-							<form>
-								<input id="name" type="text" value="Name " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-								<input id="wechat" type="text" value="Wechat" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
-								<input id="phone" type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
-								<input id="email" type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
-							<!--
-								<input id="email" type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-								<input id="phone" type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
-							-->
-								<textarea id="comment" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Special Instruction/Comments...';}" required="">Special Instruction/Comments...</textarea>
-								<input type="submit" onclick="Feedback()" value="Submit" >
-								<p id="show"></p>
+							<form action="contact.php" method="post">
+								<input name ="fullname" type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+								<input name ="wechat" type="text" value="Wechat" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
+								<input name ="phone" type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
+								<input name ="email" type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">	
+								<textarea name ="comment" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Special Instruction/Comments...';}" required="">Special Instruction/Comments...</textarea>
+								<input type="submit" value="Submit" name="submit">
 							</form>
+							<?php 
+								if(isset($_POST['submit']))
+								{
+									$name = $_POST['fullname'];
+									$wechat =$_POST['wechat'];
+									$phone = $_POST['phone'];
+									$email = $_POST['email'];
+									$comment =$_POST['comment'];
+									
+									//mysql_query("INSERT INTO feedback ('fullname','wechat','phone','comment')VALUES ($_POST['fullname'],$_POST['wechat'],$_POST['phone'],$_POST['email'],$_POST['comment'])");
+									
+									if (mysqli_query($conn,"INSERT INTO feedback (fullname,wechat,phone,email,comment_feedback)VALUES ('$name','$wechat','$phone','$email','$comment')")) 
+									{
+										echo '<script language="javascript">';
+										echo 'alert("message successfully sent")';
+										echo '</script>';
+									} 
+									else 
+									{
+										echo '<script language="javascript">';
+										echo 'alert("upload was failed, please try again")';
+										echo '</script>';
+									}
+								}
+							?>
 						</div>
 						<div class="col-md-4 contact-grid1">
 							<h4>Hoster</h4>
@@ -125,16 +162,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<img src="images/a3.jpg" class="img-responsive" alt="">
 								</div>
 								<div class="agent-info">
-									<h5>Mandy</h5>
-									<h6>Real Space Group</h6>
+									<h5><?php echo htmlspecialchars($hosters['Name'])?></h5>
+									<h6><?php echo htmlspecialchars($hosters['Company'])?></h6>
 								</div>
 								<div class="clearfix"></div>
 							</div>
 							<ul>
-									<li><i class="glyphicon glyphicon-phone-alt" aria-hidden="true"></i> Mobile : </li>
-									<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i> Email : <a href="mailto:info@example.com">info@example.com</a></li>
-									<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i> Wechat : </li>
-									<li><i class="glyphicon glyphicon-home" aria-hidden="true"></i> Address : </li>
+									<li><i class="glyphicon glyphicon-phone-alt" aria-hidden="true"></i> Mobile : <?php echo htmlspecialchars($hosters['mobile'])?></li>
+									<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i> Email : <?php echo htmlspecialchars($hosters['email'])?></li>
+									<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i> Wechat : <?php echo htmlspecialchars($hosters['wechat'])?></li>
+									<li><i class="glyphicon glyphicon-home" aria-hidden="true"></i> Address : <?php echo htmlspecialchars($hosters['address'])?></li>
 									<li><i class="glyphicon glyphicon-qrcode" aria-hidden="true"></i> Barcode : </li>
 									<img style="height:150px;width:200px;" src="8762.jpg" alt="">
 								</ul>
@@ -145,48 +182,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 		</div>
-		<!---footer--->
-			<div class="footer-section">
-				<div class="container">
-					<div class="footer-grids">
-						<div class="col-md-3 footer-grid">
-							<h4>About Meet you</h4>
-							<p id="aboutMeSub"></p>
+					<!---footer--->
+					<div class="footer-section">
+						<div class="container">
+							<div class="footer-grids">
+								<div class="col-md-3 footer-grid">
+									<h4>About Meet you</h4>
+									<p><?php echo htmlspecialchars($meetyoudes['Decription']); ?></p>
+								</div>
+								<div class="col-md-3 footer-grid">
+									<h4>Activities</h4>
+									<ul>
+									<?php 
+									for ($x=0;$x<4;$x++)
+									{?>
+										<?php  $activitiesindex = mysqli_fetch_array($display_activities, MYSQLI_ASSOC); ?>
+										<li><a href=""><?php echo htmlspecialchars($activitiesindex['title']); ?></a></li>
+										
+							<?php	}?>
+										
+									</ul>
+								</div>
+								<div class="col-md-3 footer-grid">
+									<h4>Recent Posts</h4>
+									<ul>
+									 <?php for ($x=0;$x<6;$x++)
+									 { ?>
+										<?php $posts = mysqli_fetch_array($display_post,MYSQLI_ASSOC); ?>
+										<li><a href="activities.php"><?php echo $posts['Post_title']; ?></a></li>
+									<?php 
+									 }?>
+									</ul>
+								</div>
+								<div class="col-md-3 footer-grid">
+									<h4>Get In Touch</h4>
+									<ul>
+										<li><a href="contact.php">Name : <?php echo htmlspecialchars($hosters['Name'])?></a></li>
+										<li><a href="contact.php">Email : <?php echo htmlspecialchars($hosters['email'])?></a></li>
+										<li><a href="contact.php">Wechat : <?php echo htmlspecialchars($hosters['wechat'])?></a></li>
+										<li><a href="contact.php">Office : <?php echo htmlspecialchars($hosters['address'])?></a></li>
+									</ul>
+								</div>
+							<div class="clearfix"> </div>
+							</div>
+
 						</div>
-						<div class="col-md-3 footer-grid">
-							<h4>Recent Posts</h4>
-							<ul>
-								<li><a id="postOne" href="#"></a></li>
-								<li><a id="postTwo" href="#"></a></li>
-								<li><a href="#" id="postThree"></a></li>
-								<li><a href="#" id="postFour"></a></li>
-								<li><a href="#" id="postFive"></a></li>
-								<li><a href="#" id="postSix"></a></li>
-							</ul>
-						</div>
-						<div class="col-md-3 footer-grid">
-							<h4>Useful links</h4>
-							<ul>
-								<li><a href="terms.html">Terms of Use</a></li>
-								<li><a href="privacy.html">Privacy Policy</a></li>
-								<li><a href="contact.html">Contact Support </a></li>
-								<li><a href="agents.html"> All Agents</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="faqs.html">FAQs</a></li>
-							</ul>
-						</div>
-						<div class="col-md-3 footer-grid">
-							<h4>Get In Touch</h4>
-							<p id= "TouchOne"></p>
-							<p id= "TouchTwo"></p>
-							<p id= "TouchThree"></p>
-							<p id= "TouchFou"><a href="#"> @mail.com</a></p>
-						</div>
-						<div class="clearfix"> </div>
 					</div>
-				</div>
-			</div>
-			<!---footer--->
+					<!---footer--->
 			<!--copy-->
 			<div class="copy-section">
 				<div class="container">
@@ -194,5 +236,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 		<!--copy-->
+		<?php 	mysqli_close($conn); ?>
 </body>
 </html>

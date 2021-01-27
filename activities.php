@@ -3,37 +3,26 @@ require_once 'supportive_php/connection.php';
 ?>
 
 <?php
-
-/*
-	$sql_one = 'SELECT * FROM news Where ID = 1';
+	//activities 
+	$sql_one = 'SELECT * FROM activities ORDER BY consequence DESC';	
 	$display_one = mysqli_query ($conn,$sql_one);
-	$news_one = mysqli_fetch_all($display_one, MYSQLI_ASSOC);
-	
-	$sql_two = 'SELECT * FROM news Where ID = 2';
-	$display_two = mysqli_query ($conn,$sql_two);
-	$news_two = mysqli_fetch_all($display_two, MYSQLI_ASSOC);
-	
-	
-	$sql_three = 'SELECT * FROM news Where ID = 3';
-	$display_three = mysqli_query ($conn,$sql_three);
-	$news_three = mysqli_fetch_all($display_three, MYSQLI_ASSOC);
-	
-	
-	$sql_four  = 'SELECT * FROM news Where ID = 4';
-	$display_four = mysqli_query ($conn,$sql_four);
-	$news_four = mysqli_fetch_all($display_four, MYSQLI_ASSOC);
-	
-	$sql_post = 'SELECT * FROM post';
+	///////////////////////////////////////////////////////////////////
+	//post
+	$sql_post = 'SELECT *  FROM posts ORDER BY Post_index DESC';
 	$display_post = mysqli_query ($conn,$sql_post);
-	$posts = mysqli_fetch_all($display_post,MYSQLI_ASSOC);
-	*/
+	///////////////////////////////////////////////////////////////////
 	
-	$sql_one = 'SELECT * FROM activities Where consequence = 1';
-	$display_one = mysqli_query ($conn,$sql_one);
-	$activities = mysqli_fetch_all($display_one, MYSQLI_ASSOC);
+	//MeetyouDescription//
+	$sql_meetyou = 'SELECT * FROM meetyoudescription ORDER BY indexOne DESC';
+	$display_meetyou = mysqli_query ($conn,$sql_meetyou);
+	$meetyoudes = mysqli_fetch_array($display_meetyou, MYSQLI_ASSOC);
+	//////////////////////////////////////////////////////////////
 	
-	
-	mysqli_close($conn);
+	//hoster
+	$sql_hoster = 'SELECT * FROM hosterinformation';
+	$display_hoster = mysqli_query ($conn,$sql_hoster);
+	$hosters = mysqli_fetch_array($display_hoster,MYSQLI_ASSOC);
+
 ?>
 
 <!DOCTYPE HTML>
@@ -89,6 +78,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body>
+			<img style="position:fixed;height:150px;width:150px;bottom:15px;right:10px;display:block;" src="8762.jpg" alt="">
 	
 			<div class="header-section">
 				<div class="container">
@@ -112,7 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
 								<li><a href="index.php">Home</a></li>
-								<li class="active"><a href="blog.php">Activities<span class="sr-only">(current)</span></a></li>
+								<li class="active"><a href="activities.php">Activities<span class="sr-only">(current)</span></a></li>
 								<li>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find The One<span class="caret"></span></a>
 									<ul class="dropdown-menu">
@@ -142,72 +132,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="container">
 					<div class="blog-grids">
 						<div class="col-md-9 blog-grid">
-							<div class="blog">
-								<h3><a id="newone" href="single.html"></a></h3>
-								<p id="newonedate"></p>
-								<?php foreach ($activities as $activity_one) { ?>
-									<h3><?php echo htmlspecialchars($activity_one['title']); ?></h3>
-									<p><?php echo htmlspecialchars($activity_one['update_date']); ?></p>
+							<?php 
+							for ($x=0;$x<4;$x++)
+							{?>
+							<?php 	$activities = mysqli_fetch_array($display_one, MYSQLI_ASSOC); ?>
+								<div class="blog">
+									<h3><?php echo htmlspecialchars($activities['title']); ?></h3>
+									<p><?php echo htmlspecialchars($activities['update_date']); ?></p>
 									<a href="single.html"><img src="images/newfour.jpg" class="img-responsive" alt=""/></a>
-									<p><?php echo htmlspecialchars($activity_one['description']); ?></p>
-								<a href="single.html" class="button5 hvr-shutter-out-horizontal">Read More</a>
-								<?php } ?>
-							</div>
-							<div class="blog blog2">
-								<h3><a id="newtwo" href="single.html"></a></h3>
-								<p id="newtwodate"></p>
-								<a href="single.html"><img src="images/newone.jpg" class="img-responsive" alt=""/></a>
-								<p id="newtwodes"></p>
-								<a href="single.html" class="button5 hvr-shutter-out-horizontal">Read More</a>
-							</div>
-							<div class="blog">
-								<h3><a id="newthree" href="single.html"></a></h3>
-								<p id="newthreedate"></p>
-								<a href="single.html"><img src="images/newtwo.jpg" class="img-responsive" alt=""/></a>
-								<p id="newthreedes"></p>
-								<a href="single.html" class="button5 hvr-shutter-out-horizontal">Read More</a>
-							</div>
-							<div class="clearfix"></div>
-							<div class="blog">
-								<h3><a id="newfour" href="single.html"></a></h3>
-								<p id="newfourdate"></p>
-								<a href="single.html"><img src="images/newthree.jpg" class="img-responsive" alt=""/></a>
-								<p id="newfourdes"></p>
-								<a href="single.html" class="button5 hvr-shutter-out-horizontal">Read More</a>
-							</div>
+									<p><?php echo htmlspecialchars($activities['description']); ?></p>
+									<a href="<?php echo $activities['link']; ?>" class="button5 hvr-shutter-out-horizontal">Read More</a>
+								</div>
+								<br/>
+								<br/>
+							<?php
+							}
+							?>
 						</div>
 						<div class="col-md-3 blog-grid1">
-							<div class="categ">
-							<h3>Categories</h3>
-							<ul>
-							<li><a href="#">News</a></li>
-		  						<li><a href="#">Activities</a></li>
-		  						<li><a href="#">Successed cases</a></li>
-		  						<li><a href="#">Notification</a></li>
-							</ul>
-							</div>
 							<div class="feature">
-								<h4>Introduction</h4>
-								<div class="feature-top">
-								<img src="images/s4.jpg" class="img-responsive" alt="/">
-										<h5>News</h5>
-										<p>On time update news <a href="#">Know More</a></p>
-								</div>
-								<div class="feature-top top2">
-								<img src="images/s3.jpg" class="img-responsive" alt="/">
-										<h5>Activtities</h5>
-										<p>activties <a href="#">Know More</a></p>
-								</div>
-								<div class="feature-top top2">
-								<img src="images/s5.jpg" class="img-responsive" alt="/">
-										<h5>successed cases</h5>
-										<p>successed cases<a href="#">Know More</a></p>
-								</div>
-								<div class="feature-top top2">
-								<img src="images/s6.jpg" class="img-responsive" alt="/">
-										<h5>Notification</h5>
-										<p>System Notification <a href="#">Know More</a></p>
-								</div>
+								<h4>Recent Post</h4>
+								<?php for($x=0;$x<5;$x++)
+								{?>	
+									<?php $posts = mysqli_fetch_array($display_post,MYSQLI_ASSOC); ?>
+									<div class="feature-top">
+										<img src="images/s4.jpg" class="img-responsive" alt="/">
+										<h5><?php echo $posts['Post_title'];?></h5>
+										<h6><?php echo $posts['upload_date'];?></h6>
+										<p><?php echo $posts['Post_description'];?></p>
+									</div>
+								<?php
+								}?>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -215,47 +170,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 		</div>
-			<!---footer--->
+					<!---footer--->
 					<div class="footer-section">
 						<div class="container">
 							<div class="footer-grids">
 								<div class="col-md-3 footer-grid">
 									<h4>About Meet you</h4>
-									<p id="aboutMeSub"></p>
+									<p><?php echo htmlspecialchars($meetyoudes['Decription']); ?></p>
+								</div>
+								<div class="col-md-3 footer-grid">
+									<h4>Activities</h4>
+									<ul>
+									<?php 
+									$display_one_one = mysqli_query($conn,$sql_one);
+									for ($x=0;$x<4;$x++)
+									{?>
+										<?php  $activitiesindex = mysqli_fetch_array($display_one_one, MYSQLI_ASSOC); ?>
+										<li><a href=""><?php echo htmlspecialchars($activitiesindex['title']); ?></a></li>
+										
+							<?php	}?>
+										
+									</ul>
 								</div>
 								<div class="col-md-3 footer-grid">
 									<h4>Recent Posts</h4>
 									<ul>
-										<li><a href="#" id="postOne"></a></li>
-										<li><a href="#" id="postTwo"></a></li>
-										<li><a href="#" id="postThree"></a></li>
-										<li><a href="#" id="postFour"></a></li>
-										<li><a href="#" id="postFive"></a></li>
-										<li><a id="postSix" href="#"></a></li>
-									</ul>
-								</div>
-								<div class="col-md-3 footer-grid">
-									<h4>Useful links</h4>
-									<ul>
-										<li><a href="terms.html">Terms of Use</a></li>
-										<li><a href="privacy.html">Privacy Policy</a></li>
-										<li><a href="contact.html">Contact Support </a></li>
-										<li><a href="faqs.html">FAQs</a></li>
+									 <?php 
+									 $display_post_post = mysqli_query($conn,$sql_post);
+									 for ($x=0;$x<6;$x++)
+									 { ?>
+										<?php $posts = mysqli_fetch_array($display_post_post,MYSQLI_ASSOC); ?>
+										<li><a href="activities.php"><?php echo $posts['Post_title']; ?></a></li>
+									<?php 
+									 }?>
 									</ul>
 								</div>
 								<div class="col-md-3 footer-grid">
 									<h4>Get In Touch</h4>
-									<p id= "TouchOne"></p>
-									<p id= "TouchTwo"></p>
-									<p id= "TouchThree"></p>
-									<p id= "TouchFou"><a href="#"> @mail.com</a></p>
+									<ul>
+										<li><a href="contact.php">Name : <?php echo htmlspecialchars($hosters['Name'])?></a></li>
+										<li><a href="contact.php">Email : <?php echo htmlspecialchars($hosters['email'])?></a></li>
+										<li><a href="contact.php">Wechat : <?php echo htmlspecialchars($hosters['wechat'])?></a></li>
+										<li><a href="contact.php">Office : <?php echo htmlspecialchars($hosters['address'])?></a></li>
+									</ul>
 								</div>
 							<div class="clearfix"> </div>
 							</div>
 
 						</div>
 					</div>
-			<!---footer--->
+					<!---footer--->
 			<!--copy-->
 					<div class="copy-section">
 						<div class="container">
@@ -263,6 +227,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 			<!--copy-->
+			<?php 	mysqli_close($conn); ?>
 
 </body>
+
+<?php 	
+	mysqli_close($conn);
+?>
 </html>
