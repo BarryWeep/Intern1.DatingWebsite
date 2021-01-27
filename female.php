@@ -202,7 +202,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<h4>Activities</h4>
 									<ul>
 									<?php 
-									for ($x=0;$x<4;$x++)
+									$row_activities = mysqli_num_rows($display_activities);
+									if($row_activities >5)
+									{
+										$row_activities = 5;
+									}
+									for ($x=0;$x<$row_activities;$x++)
 									{?>
 										<?php  $activitiesindex = mysqli_fetch_array($display_activities, MYSQLI_ASSOC); ?>
 										<li><a href=""><?php echo htmlspecialchars($activitiesindex['title']); ?></a></li>
@@ -214,7 +219,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-3 footer-grid">
 									<h4>Recent Posts</h4>
 									<ul>
-									 <?php for ($x=0;$x<6;$x++)
+									 <?php 
+									 $row_post = mysqli_num_rows($display_post);
+									 if($row_post>5)
+									 {
+										 $row_post = 5;
+									 }
+									 for ($x=0;$x<$row_post;$x++)
 									 { ?>
 										<?php $posts = mysqli_fetch_array($display_post,MYSQLI_ASSOC); ?>
 										<li><a href="activities.php"><?php echo $posts['Post_title']; ?></a></li>

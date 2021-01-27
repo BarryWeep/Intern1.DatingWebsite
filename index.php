@@ -7,6 +7,7 @@ require_once 'supportive_php/connection.php';
 	// activities_banner//
 	$sql_activities = 'SELECT * FROM activities ORDER BY consequence DESC';
 	$display_activities = mysqli_query ($conn,$sql_activities);
+	$row_activities = mysqli_num_rows($display_activities);
 	//////////////////////////////////////////////////////////////
 	//MeetyouDescription//
 	$sql_meetyou = 'SELECT * FROM meetyoudescription ORDER BY indexOne DESC';
@@ -16,17 +17,20 @@ require_once 'supportive_php/connection.php';
 	//post
 	$sql_post = 'SELECT * FROM posts ORDER BY Post_index DESC';
 	$display_post = mysqli_query ($conn,$sql_post);
+	$row_post = mysqli_num_rows($display_post);
 	/////////////////////////////////////////////////////////////
 	
 	
 	//female select
 	$sql_female = 'SELECT * FROM female ORDER BY UserIndex DESC';
 	$display_female = mysqli_query ($conn,$sql_female);
+	$row_female = mysqli_num_rows($display_female);
 	/////////////////////////////////////////////////////////////
 	
 	//male select
 	$sql_male = 'SELECT * FROM male ORDER BY UserIndex DESC';
 	$display_male = mysqli_query ($conn,$sql_male);
+	$row_male = mysqli_num_rows($display_male);
 	/////////////////////////////////////////////////////////////
 	
 	//hoster
@@ -170,7 +174,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>Popular Matchers</h3>
 				<!--                     start                       -->
 				<?php
-				for ($x=0;$x<3;$x++)
+				if($row_female>$row_male)
+				{
+					$row_female = $row_male;
+				}
+				
+				if($row_female>4&&$row_male>4)
+				{
+					$row_female = 4;
+				}
+				for ($x=0;$x<$row_female;$x++)
 				{ ?>	
 					<!-- female display -->
 					<div class="offer-grids">
@@ -223,7 +236,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h3>Activities</h3>
 						<div class="feature-grids">
 							<?php 
-								for ($x=0;$x<4;$x++)
+								if($row_activities>4)
+								{
+									$row_activities=4;
+								}
+								for ($x=0;$x<$row_activities;$x++)
 									{?>
 										<?php  $activities = mysqli_fetch_array($display_activities, MYSQLI_ASSOC); ?>
 										<div class="col-md-3 feature-grid">
@@ -273,7 +290,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<ul>
 									<?php 
 									$display_activities_index = mysqli_query ($conn,$sql_activities);
-									for ($x=0;$x<4;$x++)
+									if($row_activities>5)
+									{
+										$row_activities = 5;
+									}
+									for ($x=0;$x<$row_activities;$x++)
 									{?>
 										<?php  $activitiesindex = mysqli_fetch_array($display_activities_index, MYSQLI_ASSOC); ?>
 										<li><a href=""><?php echo htmlspecialchars($activitiesindex['title']); ?></a></li>
@@ -285,7 +306,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-3 footer-grid">
 									<h4>Recent Posts</h4>
 									<ul>
-									 <?php for ($x=0;$x<6;$x++)
+									 <?php 
+									 if ($row_post >5)
+									 {
+										 $row_post = 5;
+									 }
+									for ($x=0;$x<$row_post;$x++)
 									 { ?>
 										<?php $posts = mysqli_fetch_array($display_post,MYSQLI_ASSOC); ?>
 										<li><a href="activities.php"><?php echo $posts['Post_title']; ?></a></li>

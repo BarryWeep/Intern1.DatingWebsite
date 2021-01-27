@@ -52,15 +52,23 @@ table, th, td {
 					<label>Description :</label><br>
 					<textarea name = " Description"></textarea><br>
 					<label>Link:</label><br>
-					<input name="Link"><br>
+					<input name="Link" value="activities"><br>
 					<input name = "submit_activities" type="submit">
 				</form>
 			</td>
 			<td>$100</td>
 		</tr>
+		<tr>
+			<th> Delete last activities : </th>
+			<th style = "text-align: center;height: 100px"><form action="admin.php" method="post">
+				<input type = "submit" value ="delete" name = "deleteActivties" style= " height: 50px">
+				</form>
+			</th>
+		</tr>
 	</table>
 	<?php
-		if(isset($_POST['submit_activities']))
+		$test = isset($_POST['submit_activities']);
+		if($test)
 		{
 			$title = $_POST['title'];
 			$brief = $_POST['Brief'];
@@ -78,6 +86,24 @@ table, th, td {
 										echo 'alert("upload was failed, please try again")';
 										echo '</script>';
 									}
+									
+			$test = false;
+		}
+		
+		if(isset($_POST['deleteActivties']))
+		{
+			if(mysqli_query($conn,"DELETE FROM activities ORDER BY consequence DESC LIMIT 1"))
+			{
+				echo '<script language="javascript">';
+				echo 'alert("information deleted successfully")';
+				echo '</script>';
+			}
+			else
+			{
+				echo '<script language="javascript">';
+				echo 'alert("deleting was failed, please try again")';
+				echo '</script>';
+			}
 		}
 	?>
 	<br/>
@@ -86,12 +112,12 @@ table, th, td {
 	<br/>
 	<table style="text-align: center">
 		<tr>
-			<th>Overall description for meet you:</th>
+			<th>Overall description for meet you : (Don't use the sign ' )</th>
 		</tr>
 		<tr>
 			<td>
 				<form action="admin.php" method="post">
-					<label>Description (Don't use the sign '):</label><br>
+					<label>Description:</label><br>
 					<textarea type="text" name="desall" style="width: 900px; height: 300px"></textarea><br>
 					<input type="submit" name="Submit_description" >
 				</form>
@@ -121,7 +147,7 @@ table, th, td {
 	<br/>
 	<br/>
 	<br/>
-	<h1 style="text-align: center">Upload new matcher</h1>
+	<h1 style="text-align: center">Upload new matcher (Don't use the sign ' )</h1>
 	<table>
 		<tr>
 			<th>Females</th>
@@ -219,8 +245,8 @@ table, th, td {
 			</td>
 		</tr>
 		<tr>
-			<th>Upload the female photos</th>
-			<th>Upload the male photos</th>
+			<th>Upload the female photos </th>
+			<th>Upload the male photos </th>
 		</tr>
 		<tr>
 			<td>
@@ -284,7 +310,7 @@ table, th, td {
 	</br>
 	<table style="text-align: center">
 		<tr>
-			<th>upload new post/successful case:</th>
+			<th>upload new post/successful case : (Don't use the sign ' )</th>
 		</tr>
 		<tr>
 			<td>
@@ -355,7 +381,7 @@ table, th, td {
 	</br>
 	<table style="text-align: center">
 	  <tr>
-		<th>hoster information edit (plz dont use sign ')
+		<th>hoster information edit (plz dont use sign ' )
 	  </tr>
 	  <tr>
 		<td>

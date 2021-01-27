@@ -133,7 +133,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="blog-grids">
 						<div class="col-md-9 blog-grid">
 							<?php 
-							for ($x=0;$x<4;$x++)
+							$row_one = mysqli_num_rows($display_one);
+							if($row_one > 4)
+							{
+								$row_one = 4;
+							}
+							for ($x=0;$x<$row_one;$x++)
 							{?>
 							<?php 	$activities = mysqli_fetch_array($display_one, MYSQLI_ASSOC); ?>
 								<div class="blog">
@@ -152,7 +157,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-3 blog-grid1">
 							<div class="feature">
 								<h4>Recent Post</h4>
-								<?php for($x=0;$x<5;$x++)
+								
+								<?php 
+								$row_post = mysqli_num_rows($display_post);
+								if($row_post>5)
+								{
+									$row_post = 5;
+								}
+								for($x=0;$x<$row_post;$x++)
 								{?>	
 									<?php $posts = mysqli_fetch_array($display_post,MYSQLI_ASSOC); ?>
 									<div class="feature-top">
@@ -183,7 +195,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<ul>
 									<?php 
 									$display_one_one = mysqli_query($conn,$sql_one);
-									for ($x=0;$x<4;$x++)
+									$row_one_one = mysqli_num_rows($display_one_one);
+									if($row_one_one >5)
+									{
+										$row_one_one = 5;
+									}
+									for ($x=0;$x<$row_one_one;$x++)
 									{?>
 										<?php  $activitiesindex = mysqli_fetch_array($display_one_one, MYSQLI_ASSOC); ?>
 										<li><a href=""><?php echo htmlspecialchars($activitiesindex['title']); ?></a></li>
@@ -197,7 +214,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<ul>
 									 <?php 
 									 $display_post_post = mysqli_query($conn,$sql_post);
-									 for ($x=0;$x<6;$x++)
+									 $row_post_post = mysqli_num_rows($display_post_post);
+									 if($row_post_post>5)
+									 {
+										 $row_post_post = 5;
+									 }
+									 for ($x=0;$x<$row_post_post;$x++)
 									 { ?>
 										<?php $posts = mysqli_fetch_array($display_post_post,MYSQLI_ASSOC); ?>
 										<li><a href="activities.php"><?php echo $posts['Post_title']; ?></a></li>
