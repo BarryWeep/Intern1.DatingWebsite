@@ -54,15 +54,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- pop-up -->
 
 </head>
-<body>
-		<img style="position:fixed;height:150px;width:150px;bottom:15px;right:10px;display:block;" src="8762.jpg" alt="">
+<body style="background-image: url(./images/background/background.jpg);">
+			<?php 
+				$barcode = mysqli_query($conn,"SELECT * FROM barcode");
+				$barcode_display = mysqli_fetch_array($barcode);
+				$data_barcode = $barcode_display['bin_date'];
+				$type_barcode  = $barcode_display['filetype'];
+			?>
+			<img style="position:fixed;height: auto;width:170px;bottom:15px;right:10px;display:block;" src="data:<?php echo $type_barcode?>;charset=utf8;base64,<?php echo base64_encode($data_barcode); ?>">
 		<!---header--->
 			<div class="header-section">
 				<div class="container">
 					<div class="head-top">
-						<div class="email">
+					<div class="email">
 						<ul>
-							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>
+							<?php
+								$select_main_page = Mysqli_query($conn,"SELECT * FROM hosterinformation");
+								$select_main_page_show = mysqli_fetch_array($select_main_page);
+							?>
+							<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>Wechat : <a><?php echo $select_main_page_show['wechat']; echo "/"; echo $select_main_page_show['wechatTwo']?></a></li>
 						</ul>
 						</div>
 						<div class="clearfix"></div>
@@ -106,87 +116,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="content">
 			<div class="gallery-section">
 				<div class="container">
-					<div class="gallery-grids">
+					<?php 
+						$user_select = mysqli_query($conn,'SELECT * FROM male');
+						while($row = mysqli_fetch_array($user_select))
+						{
+							$user_id = $row['UserID'];
+							$maleimg = mysqli_query($conn ,"SELECT * FROM maleimgtable WHERE UserID = '$user_id'");
+							$display_male = mysqli_fetch_array($maleimg);
+							$data = $display_male['bin_date'];
+							$type = $display_male['filetype'];
+					?>
+
 						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="1">
-							</div>
+						<div class="size">
+						<a href="<?php echo "Personal.php?gender=male&new=".$user_id?>" class="swipebox"><span class="rollover1"> </span></a>
+						<img style =" width: 250; height: 200px"src="data:<?php echo $type?>;charset=utf8;base64,<?php echo base64_encode($data); ?>" />
 						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="2">
-							</div>
 						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="3">
-							</div>
-						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="4">
-							</div>
-						</div>
+						<?php } ?>
 						<div class="clearfix"></div>
-					</div>
-					<div class="gallery-grids galry">
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="5">
-							</div>
-						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="6">
-							</div>
-						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="7">
-							</div>
-						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="8">
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="gallery-grids galry">
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="9">
-							</div>
-						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="10">
-							</div>
-						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="11">
-							</div>
-						</div>
-						<div class="col-md-3 gallery-grid">
-							<div class="size">
-								<a href="Personal.html" class="swipebox"><span class="rollover1"> </span></a>
-								<img src="images/male/a2.jpg" width="100%" height="100%" alt="12">
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+				</div>
+			</div>
 				</div>
 			</div>
 		</div>

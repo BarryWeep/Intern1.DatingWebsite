@@ -60,16 +60,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</script>
 
 <!-- pop-up -->
+<style type="text/css">
+html,body{
+            width:100%;
+            height:100%
+        }
+        body{
+            background:url("./images/background/background.jpg") no-repeat;
+            background-size: 100%;
+        }
+}
+</style>
+
 
 </head>
-<body>
-			<img style="position:fixed;height:150px;width:150px;bottom:15px;right:10px;display:block;" src="8762.jpg" alt="">
+<body style="background-image: url(./images/background/background.jpg);">
+	<?php 
+				$barcode = mysqli_query($conn,"SELECT * FROM barcode");
+				$barcode_display = mysqli_fetch_array($barcode);
+				$data_barcode = $barcode_display['bin_date'];
+				$type_barcode  = $barcode_display['filetype'];
+			?>
+			<img style="position:fixed;height: auto;width:170px;bottom:15px;right:10px;display:block;" src="data:<?php echo $type_barcode?>;charset=utf8;base64,<?php echo base64_encode($data_barcode); ?>">
 			<div class="header-section">
 				<div class="container">
 					<div class="head-top">
 						<div class="email">
 						<ul>
-							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>
+							<?php
+								$select_main_page = Mysqli_query($conn,"SELECT * FROM hosterinformation");
+								$select_main_page_show = mysqli_fetch_array($select_main_page);
+							?>
+							<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>Wechat : <a><?php echo $select_main_page_show['wechat']; echo "/"; echo $select_main_page_show['wechatTwo']?></a></li>
 						</ul>
 						</div>
 						<div class="clearfix"></div>
@@ -171,7 +193,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><i class="glyphicon glyphicon-phone-alt" aria-hidden="true"></i> Mobile : <?php echo htmlspecialchars($hosters['mobile'])?></li>
 									<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i> Email : <?php echo htmlspecialchars($hosters['email'])?></li>
 									<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i> Wechat : <?php echo htmlspecialchars($hosters['wechat'])?></li>
+									<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>Second Wechat : <?php echo htmlspecialchars($hosters['wechatTwo'])?></li>
 									<li><i class="glyphicon glyphicon-home" aria-hidden="true"></i> Address : <?php echo htmlspecialchars($hosters['address'])?></li>
+									<li><i class="glyphicon glyphicon-home" aria-hidden="true"></i>Second Address : <?php echo htmlspecialchars($hosters['addressTwo'])?></li>
 									<li><i class="glyphicon glyphicon-qrcode" aria-hidden="true"></i> Barcode : </li>
 									<img style="height:150px;width:200px;" src="8762.jpg" alt="">
 								</ul>

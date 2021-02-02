@@ -93,18 +93,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 		});
 	</script>
+<!--
+<style type="text/css">
+html,body{
+            width:100%;
+            height:100%
+        }
+        body{
+            background:url("./images/background/background.jpg") no-repeat;
+            background-size: 100%;
+        }
+}
+</style>
+-->
 
 </head>
 <body>
-			
-			<img style="position:fixed;height:150px;width:150px;bottom:15px;right:10px;display:block;" src="8762.jpg" alt="">
-
+			<?php 
+				$barcode = mysqli_query($conn,"SELECT * FROM barcode");
+				$barcode_display = mysqli_fetch_array($barcode);
+				$data_barcode = $barcode_display['bin_date'];
+				$type_barcode  = $barcode_display['filetype'];
+			?>
+			<img style="position:fixed;height: auto;width:170px;bottom:15px;right:10px;display:block;" src="data:<?php echo $type_barcode?>;charset=utf8;base64,<?php echo base64_encode($data_barcode); ?>">
 			<div class="header-section">
 				<div class="container">
 					<div class="head-top">
 						<div class="email">
 						<ul>
-							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>
+							<?php
+								$select_main_page = Mysqli_query($conn,"SELECT * FROM hosterinformation");
+								$select_main_page_show = mysqli_fetch_array($select_main_page);
+							?>
+							<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>Wechat : <a><?php echo $select_main_page_show['wechat']; echo "/"; echo $select_main_page_show['wechatTwo']?></a></li>
 						</ul>
 						</div>
 						<div class="clearfix"></div>
@@ -191,10 +212,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="offer-grid1">
 								<div class="offer1">
 									<div class="offer-left">
-										<a href="Personal.html" class="mask"><img src="images/female/a3.jpg" class="img-responsive zoom-img" alt=""/></a>
+									
+									<?php
+										  $females = mysqli_fetch_array($display_female, MYSQLI_ASSOC);
+										  $user_id = $females['UserID'];
+										/////////////////////////////female  image
+											$actimg_female = mysqli_query($conn,"SELECT * FROM femaleimg WHERE UserID ='$user_id' LIMIT 1");
+											$display_actimg_female = mysqli_fetch_array($actimg_female);
+											$data_female = $display_actimg_female['bin_date'];
+											$type_female = $display_actimg_female['filetype'];
+											
+										?>
+										<a href="female.php"  class="mask"><img src="data:<?php echo $type_female?>;charset=utf8;base64,<?php echo base64_encode($data_female); ?>" class="img-responsive zoom-img" alt=""/></a>
 									</div>
 									<div class="offer-right">
-									<?php  $females = mysqli_fetch_array($display_female, MYSQLI_ASSOC); ?>
 										<h5><label><?php echo htmlspecialchars($females['UserName']);?></label> </h5>
 										<p><label>Gender: </label><span><?php echo htmlspecialchars($females['Gender']);?></span></p> 
 										<p><label>Location: </label><span><?php echo htmlspecialchars($females['location']);?></span></p> 
@@ -212,10 +243,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="offer-grid1">
 								<div class="offer1">
 									<div class="offer-left">
-										<a href="Personal.html" class="mask"><img src="images/male/a2.jpg" class="img-responsive zoom-img" alt=""/></a>
+									<?php 
+										  $males = mysqli_fetch_array($display_male, MYSQLI_ASSOC); 
+										  $user_id_males = $males['UserID'];
+										/////////////////////////////female  image
+											$actimg_male = mysqli_query($conn,"SELECT * FROM maleimgtable WHERE UserID ='$user_id_males' LIMIT 1");
+											$display_actimg_male = mysqli_fetch_array($actimg_male);
+											$data_male = $display_actimg_male['bin_date'];
+											$type_male = $display_actimg_male['filetype'];
+									?>
+										<a href="male.php"  class="mask"><img src="data:<?php echo $type_male?>;charset=utf8;base64,<?php echo base64_encode($data_male); ?>" class="img-responsive zoom-img" alt=""/></a>
 									</div>
 									<div class="offer-right">
-										<?php  $males = mysqli_fetch_array($display_male, MYSQLI_ASSOC); ?>
 										<h5><label><?php echo htmlspecialchars($males['UserName']); ?></label> </h5>
 										<p><label>Gender: </label><span><?php echo htmlspecialchars($males['Gender']); ?></span></p> 
 										<p><label>Location: </label><span><?php echo htmlspecialchars($males['location']); ?></span></p> 
@@ -244,7 +283,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									{?>
 										<?php  $activities = mysqli_fetch_array($display_activities, MYSQLI_ASSOC); ?>
 										<div class="col-md-3 feature-grid">
-										<img src="images/newone.jpg" class="img-responsive" alt="/">
+										<?php
+		
+											$getconsequnce = mysqli_query($conn,"SELECT consequence FROM activities ORDER BY consequence DESC");
+											$resultconse = mysqli_fetch_array($getconsequnce,MYSQLI_ASSOC);
+											$number = $resultconse['consequence'];
+											$actimg = mysqli_query($conn ,"SELECT bin_date,filetype FROM imgact WHERE consequence=$number");
+											$display_actimg = mysqli_fetch_array($actimg);
+											$data = $display_actimg['bin_date'];
+											$type = $display_actimg['filetype'];
+											
+										?>
+										<img style =" width: 200px; height: auto"src="data:<?php echo $type?>;charset=utf8;base64,<?php echo base64_encode($data); ?>" />
 										<h5><?php echo htmlspecialchars($activities['title']); ?></h5>
 										<p><?php echo htmlspecialchars($activities['brief']); ?></p>
 										<a href= <?php echo htmlspecialchars($activities['link']); ?>>
@@ -343,6 +393,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!--copy-->
 				<?php 	mysqli_close($conn); ?>
 </body>
-</html>>
-
-<?php mysqli_close($conn); ?>
+</html>

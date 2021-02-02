@@ -77,15 +77,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 
 </head>
-<body>
-			<img style="position:fixed;height:150px;width:150px;bottom:15px;right:10px;display:block;" src="8762.jpg" alt="">
-	
+<body style="background-image: url(./images/background/background.jpg);">
+	<?php 
+				$barcode = mysqli_query($conn,"SELECT * FROM barcode");
+				$barcode_display = mysqli_fetch_array($barcode);
+				$data_barcode = $barcode_display['bin_date'];
+				$type_barcode  = $barcode_display['filetype'];
+			?>
+			<img style="position:fixed;height: auto;width:170px;bottom:15px;right:10px;display:block;" src="data:<?php echo $type_barcode?>;charset=utf8;base64,<?php echo base64_encode($data_barcode); ?>">
 			<div class="header-section">
 				<div class="container">
 					<div class="head-top">
-						<div class="email">
+					<div class="email">
 						<ul>
-							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>
+							<?php
+								$select_main_page = Mysqli_query($conn,"SELECT * FROM hosterinformation");
+								$select_main_page_show = mysqli_fetch_array($select_main_page);
+							?>
+							<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>Wechat : <a><?php echo $select_main_page_show['wechat']; echo "/"; echo $select_main_page_show['wechatTwo']?></a></li>
 						</ul>
 						</div>
 						<div class="clearfix"></div>
@@ -134,9 +143,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-9 blog-grid">
 							<?php 
 							$row_one = mysqli_num_rows($display_one);
-							if($row_one > 4)
+							if($row_one > 5)
 							{
-								$row_one = 4;
+								$row_one = 5;
 							}
 							for ($x=0;$x<$row_one;$x++)
 							{?>
@@ -144,7 +153,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="blog">
 									<h3><?php echo htmlspecialchars($activities['title']); ?></h3>
 									<p><?php echo htmlspecialchars($activities['update_date']); ?></p>
-									<a href="single.html"><img src="images/newfour.jpg" class="img-responsive" alt=""/></a>
+									<?php
+		
+											$number = $activities['consequence'];
+											$actimg = mysqli_query($conn ,"SELECT bin_date,filetype FROM imgact WHERE consequence=$number");
+											$display_actimg = mysqli_fetch_array($actimg);
+											$data = $display_actimg['bin_date'];
+											$type = $display_actimg['filetype'];
+											
+									?>
+										<img style =" width: 700px; height: auto"src="data:<?php echo $type?>;charset=utf8;base64,<?php echo base64_encode($data); ?>" />
+									<!-- <a><img src="images/.jpg" class="img-responsive" alt=""/></a> -->
 									<p><?php echo htmlspecialchars($activities['description']); ?></p>
 									<a href="<?php echo $activities['link']; ?>" class="button5 hvr-shutter-out-horizontal">Read More</a>
 								</div>
@@ -160,15 +179,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								
 								<?php 
 								$row_post = mysqli_num_rows($display_post);
-								if($row_post>5)
+								if($row_post>6)
 								{
-									$row_post = 5;
+									$row_post = 6;
 								}
 								for($x=0;$x<$row_post;$x++)
 								{?>	
 									<?php $posts = mysqli_fetch_array($display_post,MYSQLI_ASSOC); ?>
 									<div class="feature-top">
-										<img src="images/s4.jpg" class="img-responsive" alt="/">
+										<?php
+											$number_post = $posts['Post_index'];
+											$actimg_post = mysqli_query($conn ,"SELECT bin_date,filetype FROM postsimg WHERE Post_index=$number_post");
+											$display_actimg_post = mysqli_fetch_array($actimg_post);
+											$data_post = $display_actimg_post['bin_date'];
+											$type_post = $display_actimg_post['filetype'];
+											
+										?>
+										<img style =" width:250px; height: auto"src="data:<?php echo $type_post?>;charset=utf8;base64,<?php echo base64_encode($data_post); ?>" />
 										<h5><?php echo $posts['Post_title'];?></h5>
 										<h6><?php echo $posts['upload_date'];?></h6>
 										<p><?php echo $posts['Post_description'];?></p>
@@ -252,8 +279,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<?php 	mysqli_close($conn); ?>
 
 </body>
-
-<?php 	
-	mysqli_close($conn);
-?>
-</html>
