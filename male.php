@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- pop-up -->
 
 </head>
-<body style="background-image: url(./images/background/background.jpg);">
+<body style="background:url(./images/background/background1.jpg);background-repeat:inherit;"> 
 			<?php 
 				$barcode = mysqli_query($conn,"SELECT * FROM barcode");
 				$barcode_display = mysqli_fetch_array($barcode);

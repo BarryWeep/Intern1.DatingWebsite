@@ -93,8 +93,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 		});
 	</script>
-<!--
+
+
 <style type="text/css">
+<!--
 html,body{
             width:100%;
             height:100%
@@ -104,11 +106,12 @@ html,body{
             background-size: 100%;
         }
 }
-</style>
 -->
+</style>
+
 
 </head>
-<body>
+<body style="background:url(./images/background/background1.jpg);background-repeat:inherit;"> 
 			<?php 
 				$barcode = mysqli_query($conn,"SELECT * FROM barcode");
 				$barcode_display = mysqli_fetch_array($barcode);
@@ -167,21 +170,21 @@ html,body{
 						  <div class="caption">
 								<h3>Understand You</h3>
 								<p>The problem with persons have a lack of love is they don't know love looks like,<br/> so its easy from they get tricked,<br/> to see thing aren't there,<br/> but i guess we are lying to ourselves all the time</p>
-								<a href="#" class="button">know more</a>
+								<!-- <a href="#" class="button">know more</a> -->
 							</div>
 					</div>
 					<div class="slid banner2">
 						  <div class="caption">
 								<h3>Face your weakness</h3>
 								<p>in our pitifuly short lives,<br> we are all going to lose anything eventually, <br/>why not just be more brave, <br/>to climb a mountain,<br/> to chase a unrealistic dream or<br/> to exhaustively love a person</p>
-								<a href="#" class="button">know more</a>
+								<!-- <a href="#" class="button">know more</a> -->
 						  </div>
 					</div>
 					<div class="slid banner3">
 						<div class="caption">
 							<h3>Try to believe</h3>
 							<p>It doesn’t matter if the guy is perfect or the girl is perfect, <br/>as long as they are perfect for each other.<br/></p>
-							<a href="#" class="button">know more</a>
+							<!-- <a href="#" class="button">know more</a> -->
 						</div>
 					</div>
 				</ul>

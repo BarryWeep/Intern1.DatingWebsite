@@ -63,7 +63,7 @@ table, th, td {
 
 
 </head>
-<body style="background-image: url(./images/background/background.jpg);">
+<body style="background:url(./images/background/background1.jpg);background-repeat:inherit;"> 
 		<!---header--->
 			<?php 
 				$barcode = mysqli_query($conn,"SELECT * FROM barcode");

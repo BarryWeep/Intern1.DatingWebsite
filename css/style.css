@@ -196,17 +196,17 @@ div#bs-example-navbar-collapse-1 {
 .banner1{
 	background:url(../images/banner/bnr1.jpg) no-repeat 0px 0px;
 	background-size:cover;
-	min-height:550px;
+	min-height:650px;
 }
 .banner2{
-	background:url(../images/banner/bnr4.jpg) no-repeat 0px 0px;
+	background:url(../images/banner/bnr2.jpg) no-repeat 0px 0px;
 	background-size:cover;
-	min-height:550px;
+	min-height:650px;
 }
 .banner3{
 	background:url(../images/banner/bnr3.jpg) no-repeat 0px 0px;
 	background-size:cover;
-	min-height:550px;
+	min-height:650px;
 }
 .slider {
 	position: relative;
@@ -510,7 +510,7 @@ img.zoom-img {
 }
 .feature-section {
     padding: 5em 0;
-	background: #F9F9F9;
+<!--	background: #F9F9F9; -->
 }
 .feature-grids {
     margin-top: 3em;
@@ -586,7 +586,7 @@ ul.member {
 }
 .testimonials{
 	padding:5em 0;
-	background: #F9F9F9;
+<!--	background: #F9F9F9; -->
 }
 .testimonials  p {
 	color: #777;
