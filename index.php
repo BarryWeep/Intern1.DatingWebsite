@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once 'supportive_php/connection.php';
 ?>
 
@@ -19,28 +19,53 @@ require_once 'supportive_php/connection.php';
 	$display_post = mysqli_query ($conn,$sql_post);
 	$row_post = mysqli_num_rows($display_post);
 	/////////////////////////////////////////////////////////////
-	
-	
+
+
 	//female select
 	$sql_female = 'SELECT * FROM female ORDER BY UserIndex DESC';
 	$display_female = mysqli_query ($conn,$sql_female);
 	$row_female = mysqli_num_rows($display_female);
 	/////////////////////////////////////////////////////////////
-	
+
 	//male select
 	$sql_male = 'SELECT * FROM male ORDER BY UserIndex DESC';
 	$display_male = mysqli_query ($conn,$sql_male);
 	$row_male = mysqli_num_rows($display_male);
 	/////////////////////////////////////////////////////////////
-	
+
 	//hoster
 	$sql_hoster = 'SELECT * FROM hosterinformation';
 	$display_hoster = mysqli_query ($conn,$sql_hoster);
 	$hosters = mysqli_fetch_array($display_hoster,MYSQLI_ASSOC);
 	/////////////////////////////////////////////////////////////
-	
+
 //	print_r($activities);
-	
+
+/////////////////// language
+
+$lang = "zho";
+function langswitch()
+{
+	if($_GET["lang"] == "eng")
+	{
+			$json_string = file_get_contents('json/en.json');
+			$GLOBALS['data'] = json_decode($json_string, true);
+	}
+	elseif($_GET["lang"] == "zho")
+	{
+				$json_string = file_get_contents('json/zh.json');
+				$GLOBALS['data'] = json_decode($json_string, true);
+	}
+	else
+	{
+		$json_string = file_get_contents('json/zh.json');
+		$GLOBALS['data'] = json_decode($json_string, true);
+	}
+}
+ langswitch();
+
+//register_shutdown_function('langswitch');
+
 ?>
 
 <!DOCTYPE HTML>
@@ -96,6 +121,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <style type="text/css">
+a.text_word{
+	 color: white;
+}
 <!--
 html,body{
             width:100%;
@@ -111,8 +139,8 @@ html,body{
 
 
 </head>
-<body style="background:url(./images/background/background1.jpg);background-repeat:inherit;"> 
-			<?php 
+<body style="background:url(./images/background/background1.jpg);background-repeat:inherit;">
+			<?php
 				$barcode = mysqli_query($conn,"SELECT * FROM barcode");
 				$barcode_display = mysqli_fetch_array($barcode);
 				$data_barcode = $barcode_display['bin_date'];
@@ -128,8 +156,12 @@ html,body{
 								$select_main_page = Mysqli_query($conn,"SELECT * FROM hosterinformation");
 								$select_main_page_show = mysqli_fetch_array($select_main_page);
 							?>
-							<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>Wechat : <a><?php echo $select_main_page_show['wechat']; echo "/"; echo $select_main_page_show['wechatTwo']?></a></li>
+							<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i><?php echo $GLOBALS['data']["HEAD_WECHAT"]?><a><?php echo $select_main_page_show['wechat']; echo "/"; echo $select_main_page_show['wechatTwo']?></a></li>
 						</ul>
+						</div>
+						<div class="language">
+									<a class= "text_word" href="index.php?lang=eng">English</a>
+									<a class= "text_word" href="index.php?lang=zho">中文</a>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -137,27 +169,27 @@ html,body{
 					<!---Brand and toggle get grouped for better mobile display--->
 						<div class="navbar-header">
 							<div class="navbar-brand">
-								<h1><a href="index.php"><span>Meet </span>You~</a></h1>
+								<h1><a href="index.php"><span>觅</span>优</a></h1>
 							</div>
 						</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="index.php">Home <span class="sr-only">(current)</span></a></li>
-								<li><a href="activities.php">Activities</a></li>
+								<li class="active"><a href="index.php"><?php echo $GLOBALS['data']["HEAD_HOME"]?> <span class="sr-only">(current)</span></a></li>
+								<li><a href="activities.php"><?php echo $GLOBALS['data']["HEAD_ACTIVITIES"]?></a></li>
 								<li>
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find The One<span class="caret"></span></a>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $GLOBALS['data']["HEAD_FIND"]?><span class="caret"></span></a>
 											<ul class="dropdown-menu">
-												<li><a href="male.php">Him</a></li>
-												<li><a href="female.php">Her</a></
+												<li><a href="male.php"><?php echo $GLOBALS['data']["HEAD_HIM"]?></a></li>
+												<li><a href="female.php"><?php echo $GLOBALS['data']["HEAD_HER"]?></a></
 											</ul>
 								</li>
 							</ul>
-							<li><a href="contact.php">Contact</a></li>
+							<li><a href="contact.php"><?php echo $GLOBALS['data']["HEAD_CONTACT"]?></a></li>
 							<div class="clearfix"></div>
 						</div>
-						
+
 					</nav>
 				</div>
 			</div>
@@ -190,32 +222,31 @@ html,body{
 				</ul>
 			</div>
 		</div>
-		<div class="copyrights">Authorized by<a href="" >Meet You</a></div>
 <!---banner--->
-	<div class="content">		
+	<div class="content">
 			<div class="offering">
 				<div class="container">
-					<h3>Popular Matchers</h3>
+					<h3><?php echo $GLOBALS['data']["HEAD_NEWMATCHER"]?></h3>
 				<!--                     start                       -->
 				<?php
 				if($row_female>$row_male)
 				{
 					$row_female = $row_male;
 				}
-				
+
 				if($row_female>4&&$row_male>4)
 				{
 					$row_female = 4;
 				}
 				for ($x=0;$x<$row_female;$x++)
-				{ ?>	
+				{ ?>
 					<!-- female display -->
 					<div class="offer-grids">
 						<div class="col-md-6 offer-grid">
 							<div class="offer-grid1">
 								<div class="offer1">
 									<div class="offer-left">
-									
+
 									<?php
 										  $females = mysqli_fetch_array($display_female, MYSQLI_ASSOC);
 										  $user_id = $females['UserID'];
@@ -224,16 +255,16 @@ html,body{
 											$display_actimg_female = mysqli_fetch_array($actimg_female);
 											$data_female = $display_actimg_female['bin_date'];
 											$type_female = $display_actimg_female['filetype'];
-											
+
 										?>
 										<a href="female.php"  class="mask"><img src="data:<?php echo $type_female?>;charset=utf8;base64,<?php echo base64_encode($data_female); ?>" class="img-responsive zoom-img" alt=""/></a>
 									</div>
 									<div class="offer-right">
 										<h5><label><?php echo htmlspecialchars($females['UserName']);?></label> </h5>
-										<p><label>Gender: </label><span><?php echo htmlspecialchars($females['Gender']);?></span></p> 
-										<p><label>Location: </label><span><?php echo htmlspecialchars($females['location']);?></span></p> 
-										<p><label>Age: </label><span><?php echo htmlspecialchars($females['Age']);?></span></p>  
-										<p><label>Occupation: </label><span><?php echo htmlspecialchars($females['Occupation']);?></span></p> 
+										<p><label><?php echo $GLOBALS['data']["GENDER"]?></label><span> <?php echo htmlspecialchars($females['Gender']);?></span></p>
+										<p><label><?php echo $GLOBALS['data']["LOCATION"]?></label><span> <?php echo htmlspecialchars($females['location']);?></span></p>
+										<p><label><?php echo $GLOBALS['data']["AGE"]?></label><span> <?php echo htmlspecialchars($females['Age']);?></span></p>
+										<p><label><?php echo $GLOBALS['data']["OCCUPATION"]?></label><span> <?php echo htmlspecialchars($females['Occupation']);?></span></p>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -246,8 +277,8 @@ html,body{
 							<div class="offer-grid1">
 								<div class="offer1">
 									<div class="offer-left">
-									<?php 
-										  $males = mysqli_fetch_array($display_male, MYSQLI_ASSOC); 
+									<?php
+										  $males = mysqli_fetch_array($display_male, MYSQLI_ASSOC);
 										  $user_id_males = $males['UserID'];
 										/////////////////////////////female  image
 											$actimg_male = mysqli_query($conn,"SELECT * FROM maleimgtable WHERE UserID ='$user_id_males' LIMIT 1");
@@ -258,26 +289,26 @@ html,body{
 										<a href="male.php"  class="mask"><img src="data:<?php echo $type_male?>;charset=utf8;base64,<?php echo base64_encode($data_male); ?>" class="img-responsive zoom-img" alt=""/></a>
 									</div>
 									<div class="offer-right">
-										<h5><label><?php echo htmlspecialchars($males['UserName']); ?></label> </h5>
-										<p><label>Gender: </label><span><?php echo htmlspecialchars($males['Gender']); ?></span></p> 
-										<p><label>Location: </label><span><?php echo htmlspecialchars($males['location']); ?></span></p> 
-										<p><label>Age: </label><span><?php echo htmlspecialchars($males['Age']); ?></span></p>  
-										<p><label>Occupation: </label><span><?php echo htmlspecialchars($males['Occupation']); ?></span></p> 
+										<h5><label><?php echo htmlspecialchars($males['UserName']);?></label></h5>
+										<p><label><?php echo $GLOBALS['data']["GENDER"]?></label><span> <?php echo htmlspecialchars($males['Gender']); ?></span></p>
+										<p><label><?php echo $GLOBALS['data']["LOCATION"]?></label><span> <?php echo htmlspecialchars($males['location']); ?></span></p>
+										<p><label><?php echo $GLOBALS['data']["AGE"]?></label><span> <?php echo htmlspecialchars($males['Age']); ?></span></p>
+										<p><label><?php echo $GLOBALS['data']["OCCUPATION"]?></label><span> <?php echo htmlspecialchars($males['Occupation']); ?></span></p>
 									</div>
 									<div class="clearfix"></div>
 								</div>
 							</div>
 						</div>
 					</div>
-				<?php	
+				<?php
 				} ?>
 			</div>
 			<!---Featured Properties--->
 				<div class="feature-section">
 					<div class="container">
-						<h3>Activities</h3>
+						<h3><?php echo $GLOBALS['data']["HEAD_ACTIVITIES"]?></h3>
 						<div class="feature-grids">
-							<?php 
+							<?php
 								if($row_activities>4)
 								{
 									$row_activities=4;
@@ -287,7 +318,7 @@ html,body{
 										<?php  $activities = mysqli_fetch_array($display_activities, MYSQLI_ASSOC); ?>
 										<div class="col-md-3 feature-grid">
 										<?php
-		
+
 											$getconsequnce = mysqli_query($conn,"SELECT consequence FROM activities ORDER BY consequence DESC");
 											$resultconse = mysqli_fetch_array($getconsequnce,MYSQLI_ASSOC);
 											$number = $resultconse['consequence'];
@@ -295,15 +326,15 @@ html,body{
 											$display_actimg = mysqli_fetch_array($actimg);
 											$data = $display_actimg['bin_date'];
 											$type = $display_actimg['filetype'];
-											
+
 										?>
 										<img style =" width: 200px; height: auto"src="data:<?php echo $type?>;charset=utf8;base64,<?php echo base64_encode($data); ?>" />
 										<h5><?php echo htmlspecialchars($activities['title']); ?></h5>
 										<p><?php echo htmlspecialchars($activities['brief']); ?></p>
 										<a href= <?php echo htmlspecialchars($activities['link']); ?>>
-										<span>Know More</span></a>
+										<span><?php echo $GLOBALS['data']["HEAD_KNOWMORE"]?></span></a>
 										</div>
-										
+
 							<?php	}?>
 							<div class="clearfix"></div>
 						</div>
@@ -312,7 +343,7 @@ html,body{
 			<!---testimonials--->
 					<div class="testimonials">
 						<div class="container">
-							<h3>Business Partner</h3>
+							<h3><?php echo $GLOBALS['data']["HEAD_BUSINESSPART"]?></h3>
 							<span></span>
 							<div id="owl-demo" class="owl-carousel">
 								<div class="item">
@@ -321,7 +352,7 @@ html,body{
 									</div>
 									<div class="col-md-10 testmonial-text">
 										<p>TechCrunch is an American online newspaper focusing on high tech and startup companies. It was founded in June 2005 by partners of Archimedes Ventures</p>
-										<h4><a href="https://techcrunch.com/">Know More</a></h4>
+										<h4><a href="https://techcrunch.com/"><?php echo $GLOBALS['data']["HEAD_KNOWMORE"]?></a></h4>
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -335,13 +366,13 @@ html,body{
 						<div class="container">
 							<div class="footer-grids">
 								<div class="col-md-3 footer-grid">
-									<h4>About Meet you</h4>
+									<h4><?php echo $GLOBALS['data']["HEAD_ABOUTMEET"]?></h4>
 									<p><?php echo htmlspecialchars($meetyoudes['Decription']); ?></p>
 								</div>
 								<div class="col-md-3 footer-grid">
-									<h4>Activities</h4>
+									<h4><?php echo $GLOBALS['data']["HEAD_RECENTACTIVITIES"]?></h4>
 									<ul>
-									<?php 
+									<?php
 									$display_activities_index = mysqli_query ($conn,$sql_activities);
 									if($row_activities>5)
 									{
@@ -351,15 +382,15 @@ html,body{
 									{?>
 										<?php  $activitiesindex = mysqli_fetch_array($display_activities_index, MYSQLI_ASSOC); ?>
 										<li><a href=""><?php echo htmlspecialchars($activitiesindex['title']); ?></a></li>
-										
+
 							<?php	}?>
-										
+
 									</ul>
 								</div>
 								<div class="col-md-3 footer-grid">
-									<h4>Recent Posts</h4>
+									<h4><?php echo $GLOBALS['data']["HEAD_POSTS"]?></h4>
 									<ul>
-									 <?php 
+									 <?php
 									 if ($row_post >5)
 									 {
 										 $row_post = 5;
@@ -368,17 +399,16 @@ html,body{
 									 { ?>
 										<?php $posts = mysqli_fetch_array($display_post,MYSQLI_ASSOC); ?>
 										<li><a href="activities.php"><?php echo $posts['Post_title']; ?></a></li>
-									<?php 
+									<?php
 									 }?>
 									</ul>
 								</div>
 								<div class="col-md-3 footer-grid">
-									<h4>Get In Touch</h4>
+									<h4><?php echo $GLOBALS['data']["HEAD_CONTACT"]?></h4>
 									<ul>
-										<li><a href="contact.php">Name : <?php echo htmlspecialchars($hosters['Name'])?></a></li>
-										<li><a href="contact.php">Email : <?php echo htmlspecialchars($hosters['email'])?></a></li>
-										<li><a href="contact.php">Wechat : <?php echo htmlspecialchars($hosters['wechat'])?></a></li>
-										<li><a href="contact.php">Office : <?php echo htmlspecialchars($hosters['address'])?></a></li>
+										<li><a href="contact.php"><?php echo $GLOBALS['data']["HEAD_NAME"]?><?php echo htmlspecialchars($hosters['Name'])?></a></li>
+										<li><a href="contact.php"><?php echo $GLOBALS['data']["HEAD_EMAIL"]?><?php echo htmlspecialchars($hosters['email'])?></a></li>
+										<li><a href="contact.php"><?php echo $GLOBALS['data']["HEAD_ADDRESS"]?><?php echo htmlspecialchars($hosters['address'])?></a></li>
 									</ul>
 								</div>
 							<div class="clearfix"> </div>
@@ -390,7 +420,7 @@ html,body{
 					<!--copy-->
 					<div class="copy-section">
 						<div class="container">
-							<p id= "copyright_main"></p>
+							<p id= "copyright_main"><?php echo $GLOBALS['data']["AuthorizationBy"]?><a href="" >&copy;2021<?php echo $GLOBALS['data']["MEETYOU"]?></a></p>
 						</div>
 					</div>
 				<!--copy-->

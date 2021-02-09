@@ -1,0 +1,25 @@
+{
+  "HEAD_HOME":"主页",
+  "HEAD_ACTIVITIES":"活动",
+  "HEAD_FIND":"找到TA",
+  "HEAD_HIM":"他",
+  "HEAD_HER":"她",
+  "HEAD_CONTACT":"联系我们",
+  "AuthorizationBy":"此网站授权于",
+  "MEETYOU":"觅优",
+  "GENDER":"性别 : ",
+  "LOCATION":"常住地 : ",
+  "AGE":"年龄 : ",
+  "OCCUPATION":"职业 : ",
+  "HEAD_KNOWMORE":"了解更多",
+  "HEAD_BUSINESSPART":"合作伙伴",
+  "HEAD_ABOUTMEET":"关于觅优",
+  "HEAD_RECENTACTIVITIES":"近期活动",
+  "HEAD_POSTS":"近期公告",
+  "HEAD_NAME":"名字 ： ",
+  "HEAD_EMAIL":"邮箱 ： ",
+  "HEAD_WECHAT":"微信 : ",
+  "HEAD_ADDRESS":"地址 ： ",
+  "HEAD_NEWMATCHER":"最受欢迎"
+  
+}

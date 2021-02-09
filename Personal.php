@@ -1,6 +1,26 @@
 <?php 
 require_once 'supportive_php/connection.php';
 
+/////////////////// language
+function langswitch()
+{
+	if($_GET["lang"] == "eng")
+	{
+			$json_string = file_get_contents('json/en.json');
+			$GLOBALS['data'] = json_decode($json_string, true);
+	}
+	elseif($_GET["lang"] == "zho")
+	{
+				$json_string = file_get_contents('json/zh.json');
+				$GLOBALS['data'] = json_decode($json_string, true);
+	}
+	else
+	{
+		$json_string = file_get_contents('json/zh.json');
+		$GLOBALS['data'] = json_decode($json_string, true);
+	}
+}
+ langswitch();
 
 ?>
 
@@ -84,6 +104,10 @@ table, th, td {
 							?>
 							<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>Wechat : <a><?php echo $select_main_page_show['wechat']; echo "/"; echo $select_main_page_show['wechatTwo']?></a></li>
 						</ul>
+						</div>
+						<div class="language">
+									<a href="Personal.php?lang=eng">English</a>
+									<a href="Personal.php?lang=zho">中文</a>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -314,11 +338,13 @@ table, th, td {
 					</div>
 					<!---footer--->
 					<!--copy-->
+					<!--copy-->
 					<div class="copy-section">
 						<div class="container">
-							<p id= "copyright_main"></p>
+							<p id= "copyright_main"><?php echo $GLOBALS['data']["AuthorizationBy"]?><a href="" >&copy;2021<?php echo $GLOBALS['data']["MEETYOU"]?></a></p>
 						</div>
 					</div>
+				<!--copy-->
 				<!--copy-->
 </body>
 </html>

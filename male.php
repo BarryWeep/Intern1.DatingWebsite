@@ -22,6 +22,28 @@ require_once 'supportive_php/connection.php';
 	$display_hoster = mysqli_query ($conn,$sql_hoster);
 	$hosters = mysqli_fetch_array($display_hoster,MYSQLI_ASSOC);
 	/////////////////////////////////////////////////////////////
+	
+	/////////////////// language
+		function langswitch()
+		{
+			if($_GET["lang"] == "eng")
+			{
+					$json_string = file_get_contents('json/en.json');
+					$GLOBALS['data'] = json_decode($json_string, true);
+			}
+			elseif($_GET["lang"] == "zho")
+			{
+						$json_string = file_get_contents('json/zh.json');
+						$GLOBALS['data'] = json_decode($json_string, true);
+			}
+			else
+			{
+				$json_string = file_get_contents('json/zh.json');
+				$GLOBALS['data'] = json_decode($json_string, true);
+			}
+		}
+		 langswitch();
+
 
 ?>
 
@@ -74,6 +96,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							?>
 							<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>Wechat : <a><?php echo $select_main_page_show['wechat']; echo "/"; echo $select_main_page_show['wechatTwo']?></a></li>
 						</ul>
+						</div>
+						<div class="language">
+									<a href="male.php?lang=eng">English</a>
+									<a href="male.php?lang=zho">中文</a>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -199,11 +225,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<!---footer--->
 					<!--copy-->
+					<!--copy-->
 					<div class="copy-section">
 						<div class="container">
-							<p id= "copyright_main"></p>
+							<p id= "copyright_main"><?php echo $GLOBALS['data']["AuthorizationBy"]?><a href="" >&copy;2021<?php echo $GLOBALS['data']["MEETYOU"]?></a></p>
 						</div>
 					</div>
+				<!--copy-->
 				<!--copy-->
 				<?php 	mysqli_close($conn); ?>
 

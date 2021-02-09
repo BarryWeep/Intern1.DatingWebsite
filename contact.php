@@ -23,6 +23,28 @@ require_once 'supportive_php/connection.php';
 	$display_hoster = mysqli_query ($conn,$sql_hoster);
 	$hosters = mysqli_fetch_array($display_hoster,MYSQLI_ASSOC);
 	
+	function langswitch()
+{
+	if($_GET["lang"] == "eng")
+	{
+			$json_string = file_get_contents('json/en.json');
+			$GLOBALS['data'] = json_decode($json_string, true);
+	}
+	elseif($_GET["lang"] == "zho")
+	{
+				$json_string = file_get_contents('json/zh.json');
+				$GLOBALS['data'] = json_decode($json_string, true);
+	}
+	else
+	{
+		$json_string = file_get_contents('json/zh.json');
+		$GLOBALS['data'] = json_decode($json_string, true);
+	}
+}
+
+langswitch();
+
+	
 ?>
 
 
@@ -94,6 +116,10 @@ html,body{
 							<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>Wechat : <a><?php echo $select_main_page_show['wechat']; echo "/"; echo $select_main_page_show['wechatTwo']?></a></li>
 						</ul>
 						</div>
+						<div class="language">
+							<a href="contact.php?lang=eng">English</a>
+							<a href="contact.php?lang=zho">中文</a>
+						</div>
 						<div class="clearfix"></div>
 					</div>
 					<nav class="navbar navbar-default">
@@ -107,17 +133,17 @@ html,body{
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li><a href="index.php">Home</a></li>
-								<li><a href="activities.php">Activities</a></li>
+								<li><a href="index.php"><?php echo $GLOBALS['data']["HEAD_HOME"]?></a></li>
+								<li><a href="activities.php"><?php echo $GLOBALS['data']["HEAD_ACTIVITIES"]?></a></li>
 								<li>
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Find The One<span class="caret"></span></a>
 											<ul class="dropdown-menu">
-												<li><a href="male.php">Him</a></li>
-												<li><a href="female.php">Her</a></li>
+												<li><a href="male.php"><?php echo $GLOBALS['data']["HEAD_HIM"]?></a></li>
+												<li><a href="female.php"><?php echo $GLOBALS['data']["HEAD_HER"]?></a></li>
 											</ul>
 											
 								</li>
-								<li class="active" ><a href="contact.php">Contact<span class="sr-only">(current)</span></a></li>
+								<li class="active" ><a href="contact.php"><?php echo $GLOBALS['data']["HEAD_CONTACT"]?><span class="sr-only">(current)</span></a></li>
 							</ul>
 							<div>
 						</div>
@@ -190,12 +216,12 @@ html,body{
 								<div class="clearfix"></div>
 							</div>
 							<ul>
-									<li><i class="glyphicon glyphicon-phone-alt" aria-hidden="true"></i> Mobile : <?php echo htmlspecialchars($hosters['mobile'])?></li>
-									<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i> Email : <?php echo htmlspecialchars($hosters['email'])?></li>
-									<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i> Wechat : <?php echo htmlspecialchars($hosters['wechat'])?></li>
-									<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>Second Wechat : <?php echo htmlspecialchars($hosters['wechatTwo'])?></li>
-									<li><i class="glyphicon glyphicon-home" aria-hidden="true"></i> Address : <?php echo htmlspecialchars($hosters['address'])?></li>
-									<li><i class="glyphicon glyphicon-home" aria-hidden="true"></i>Second Address : <?php echo htmlspecialchars($hosters['addressTwo'])?></li>
+									<li><i class="glyphicon glyphicon-phone-alt" aria-hidden="true"></i> <?php echo $GLOBALS['data']["MOBILE"]?> : <?php echo htmlspecialchars($hosters['mobile'])?></li>
+									<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i> <?php echo $GLOBALS['data']["HEAD_EMAIL"]?> : <?php echo htmlspecialchars($hosters['email'])?></li>
+									<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i> <?php echo $GLOBALS['data']["WECHAT"]?> : <?php echo htmlspecialchars($hosters['wechat'])?></li>
+									<li><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i><?php echo $GLOBALS['data']["WECHATTWO"]?> : <?php echo htmlspecialchars($hosters['wechatTwo'])?></li>
+									<li><i class="glyphicon glyphicon-home" aria-hidden="true"></i> <?php echo $GLOBALS['data']["HEAD_ADDRESS"]?> : <?php echo htmlspecialchars($hosters['address'])?></li>
+									<li><i class="glyphicon glyphicon-home" aria-hidden="true"></i><?php echo $GLOBALS['data']["ADDRESSTWO"]?> : <?php echo htmlspecialchars($hosters['addressTwo'])?></li>
 									<li><i class="glyphicon glyphicon-qrcode" aria-hidden="true"></i> Barcode : </li>
 									<img style="height:150px;width:200px;" src="8762.jpg" alt="">
 								</ul>
@@ -252,10 +278,10 @@ html,body{
 								<div class="col-md-3 footer-grid">
 									<h4>Get In Touch</h4>
 									<ul>
-										<li><a href="contact.php">Name : <?php echo htmlspecialchars($hosters['Name'])?></a></li>
-										<li><a href="contact.php">Email : <?php echo htmlspecialchars($hosters['email'])?></a></li>
+										<li><a href="contact.php"><?php echo $GLOBALS['data']["HEAD_NAME"]?> : <?php echo htmlspecialchars($hosters['Name'])?></a></li>
+										<li><a href="contact.php"><?php echo $GLOBALS['data']["HEAD_EMAIL"]?> : <?php echo htmlspecialchars($hosters['email'])?></a></li>
 										<li><a href="contact.php">Wechat : <?php echo htmlspecialchars($hosters['wechat'])?></a></li>
-										<li><a href="contact.php">Office : <?php echo htmlspecialchars($hosters['address'])?></a></li>
+										<li><a href="contact.php"><?php echo $GLOBALS['data']["HEAD_ADDRESS"]?> : <?php echo htmlspecialchars($hosters['address'])?></a></li>
 									</ul>
 								</div>
 							<div class="clearfix"> </div>
@@ -265,11 +291,13 @@ html,body{
 					</div>
 					<!---footer--->
 			<!--copy-->
-			<div class="copy-section">
-				<div class="container">
-					<p id="copyright_main"></p>
-				</div>
-			</div>
+					<!--copy-->
+					<div class="copy-section">
+						<div class="container">
+							<p id= "copyright_main"><?php echo $GLOBALS['data']["AuthorizationBy"]?><a href="" >&copy;2021<?php echo $GLOBALS['data']["MEETYOU"]?></a></p>
+						</div>
+					</div>
+				<!--copy-->
 		<!--copy-->
 		<?php 	mysqli_close($conn); ?>
 </body>
