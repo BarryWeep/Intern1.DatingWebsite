@@ -43,24 +43,19 @@ require_once 'supportive_php/connection.php';
 
 /////////////////// language
 
-$lang = "zho";
 function langswitch()
 {
-	if($_GET["lang"] == "eng")
+	if( !is_array($_GET)||!ISSET($_GET["lang"])|| $_GET["lang"] == "zho")
+	{
+		  $json_string = file_get_contents('json/zh.json');
+		 $GLOBALS['data'] = json_decode($json_string, true);
+	}
+	else
 	{
 			$json_string = file_get_contents('json/en.json');
 			$GLOBALS['data'] = json_decode($json_string, true);
 	}
-	elseif($_GET["lang"] == "zho")
-	{
-				$json_string = file_get_contents('json/zh.json');
-				$GLOBALS['data'] = json_decode($json_string, true);
-	}
-	else
-	{
-		$json_string = file_get_contents('json/zh.json');
-		$GLOBALS['data'] = json_decode($json_string, true);
-	}
+
 }
  langswitch();
 
